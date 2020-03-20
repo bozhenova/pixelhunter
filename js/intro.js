@@ -1,4 +1,4 @@
-import greetingScreen from "./greeting";
+import greetingScreen from "./greeting.js";
 
 const introScreen = document.querySelector(`#intro`);
 const introAsterisk = document.querySelector(`.intro__asterisk`);

@@ -1,5 +1,5 @@
-import createElement from "./createElement";
-import showScreen from "./showScreen";
+import createElement from "./createElement.js";
+import showScreen from "./showScreen.js";
 
 const statsScreen = createElement(`<div><header class="header">
 	<button class="back">

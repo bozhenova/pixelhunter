@@ -1,5 +1,5 @@
-import createElement from "./createElement";
-import showScreen from "./showScreen";
+import createElement from "./createElement.js";
+import showScreen from "./showScreen.js";
 import gameTwoScreen from "./game-2";
 
 const gameOneScreen = createElement(`<div><header class="header">
@@ -66,20 +66,20 @@ let isFirstChecked = false;
 let isSecondChecked = false;
 
 gameOneRadioButtons.forEach((gameOneRadioButton) => {
-  gameOneRadioButton.addEventListener(`change`, (e) => {
-    if (e.target.name === `question1`) {
-      isFirstChecked = true;
-    }
+	gameOneRadioButton.addEventListener(`change`, (e) => {
+		if (e.target.name === `question1`) {
+			isFirstChecked = true;
+		}
 
-    if (e.target.name === `question2`) {
-      isSecondChecked = true;
-    }
+		if (e.target.name === `question2`) {
+			isSecondChecked = true;
+		}
 
-    if (isFirstChecked && isSecondChecked) {
-      gameOneScreen.classList.add(`hidden`);
-      gameTwoScreen.classList.remove(`hidden`);
-    }
-  });
+		if (isFirstChecked && isSecondChecked) {
+			gameOneScreen.classList.add(`hidden`);
+			gameTwoScreen.classList.remove(`hidden`);
+		}
+	});
 });
 
 export default gameOneScreen;

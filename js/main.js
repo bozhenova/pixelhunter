@@ -1,6 +1,6 @@
-import showScreen from "./showScreen";
-import introScreen from "./intro";
-import greetingScreen from "./greeting";
+import showScreen from "./showScreen.js";
+import introScreen from "./intro.js";
+import greetingScreen from "./greeting.js";
 
 function main() {
   const mainContent = document.querySelector(`#main`);

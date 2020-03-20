@@ -1,5 +1,5 @@
-@import "variables/colors";
-@import "mixins/text";
+@import "./variables/colors";
+@import "./mixins/text";
 
 @font-face {
   font-family: "Roboto";
@@ -43,7 +43,8 @@ body {
   @include regular-text;
   color: $main-font-color;
 
-  background: #a8c8c4 linear-gradient(to bottom left, #ccdeeb, #84b39e) no-repeat;
+  background: #a8c8c4 linear-gradient(to bottom left, #ccdeeb, #84b39e)
+    no-repeat;
 }
 
 a {
@@ -70,6 +71,10 @@ a {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+.hidden {
+  display: none;
 }
 
 @keyframes bounce {

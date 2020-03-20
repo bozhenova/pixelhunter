@@ -1,6 +1,6 @@
-import createElement from "./createElement";
-import showScreen from "./showScreen";
-import gameOneScreen from "./game-1";
+import createElement from "./createElement.js";
+import showScreen from "./showScreen.js";
+import gameOneScreen from "./game-1.js";
 
 const rulesScreen = createElement(`<div><header class="header">
 	<button class="back">
@@ -36,13 +36,13 @@ const nameForm = document.querySelector(`.rules__input`);
 const nameFormButton = document.querySelector(`.rules__button`);
 
 nameForm.addEventListener(`input`, () => {
-  nameFormButton.disabled = nameForm.value ? false : true;
+	nameFormButton.disabled = nameForm.value ? false : true;
 });
 
 nameFormButton.addEventListener(`click`, (e) => {
-  e.preventDefault();
-  rulesScreen.classList.add(`hidden`);
-  gameOneScreen.classList.remove(`hidden`);
+	e.preventDefault();
+	rulesScreen.classList.add(`hidden`);
+	gameOneScreen.classList.remove(`hidden`);
 });
 
 export default rulesScreen;

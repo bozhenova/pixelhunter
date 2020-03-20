@@ -34,7 +34,8 @@
   align-items: center;
 
   color: #000000;
-  background: #a8c8c4 linear-gradient(to bottom left, #ccdeeb, #84b39e) no-repeat;
+  background: #a8c8c4 linear-gradient(to bottom left, #ccdeeb, #84b39e)
+    no-repeat;
 
   animation: bounce 0.6s;
 }
@@ -68,7 +69,7 @@
   height: 30px;
 
   background-color: transparent;
-  background-image: url("../img/icon-cross.svg");
+  background-image: url("../../img/icon-cross.svg");
   background-repeat: no-repeat;
   background-size: 30px 30px;
 

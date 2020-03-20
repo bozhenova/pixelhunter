@@ -1,6 +1,6 @@
-import createElement from "./createElement";
-import showScreen from "./showScreen";
-import rulesScreen from "./rules";
+import createElement from "./createElement.js";
+import showScreen from "./showScreen.js";
+import rulesScreen from "./rules.js";
 
 const greetingScreen = createElement(`<div><section class="greeting central--blur">
 	<img class="greeting__logo" src="img/logo_ph-big.svg" width="201" height="89" alt="Pixel Hunter">
@@ -32,8 +32,8 @@ showScreen(greetingScreen);
 const continueButton = document.querySelector(`.greeting__continue`);
 
 continueButton.addEventListener(`click`, () => {
-  greetingScreen.classList.add(`hidden`);
-  rulesScreen.classList.remove(`hidden`);
+	greetingScreen.classList.add(`hidden`);
+	rulesScreen.classList.remove(`hidden`);
 });
 
 export default greetingScreen;
