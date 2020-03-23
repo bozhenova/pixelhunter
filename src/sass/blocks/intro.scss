@@ -16,6 +16,10 @@
   background-size: contain;
 }
 
+.intro.hidden {
+  display: none;
+}
+
 .intro__asterisk {
   position: absolute;
   top: 290px;
