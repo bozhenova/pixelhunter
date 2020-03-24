@@ -6,7 +6,6 @@ const countLives = (game, settings) => {
     return settings.fail;
   }
 
-  // clone game object and change lives property
   return { ...game, lives: game.lives - 1 };
 };
 

@@ -10,6 +10,7 @@ describe(`Counting the player lives`, () => {
     };
     expect(countLives(testGame, GAME_SETTINGS)).to.equal(-1);
   });
+
   it(`should return lives value less by 1 if the answer isn't correct`, () => {
     const gameOne = {
       level: 5,
@@ -27,7 +28,8 @@ describe(`Counting the player lives`, () => {
     expect(countLives(gameOne, GAME_SETTINGS).lives).to.equal(1);
     expect(countLives(gameTwo, GAME_SETTINGS).lives).to.equal(0);
   });
-  it(`should not allow set non number value`, () => {
+
+  it(`should not allow to set non number value`, () => {
     expect(() => countLives({}).lives).throw(Error);
     expect(() => countLives([]).lives).throw(Error);
   });
