@@ -1,32 +1,36 @@
 import showScreen from "./showScreen.js";
-import introScreen from "./intro.js";
-import greetingScreen from "./greeting.js";
+import showIntro from "./intro.js";
+import { greetingScreen } from "./greeting.js";
+import { answers } from "../data/data.js";
 
 function main() {
-  const mainContent = document.querySelector(`#main`);
-
-  showScreen(introScreen);
-
-  function hideScreens() {
-    const screens = Array.from(mainContent.children);
-
-    screens.forEach((screen) => {
-      screen.classList.add(`hidden`);
-    });
-  }
-
-  hideScreens();
-
-  introScreen.classList.remove(`hidden`);
-
-  const backButtons = document.querySelectorAll(`.back`);
-
-  backButtons.forEach((backButton) => {
-    backButton.addEventListener(`click`, function () {
-      hideScreens();
-      greetingScreen.classList.remove(`hidden`);
-    });
-  });
+  showIntro();
 }
 
-export default main;
+function returnGreeting() {
+  const backButton = document.querySelector(`.back`);
+
+  backButton.addEventListener('click', () => {
+    const mainContent = document.querySelector(`#main`);
+    const modalConfirmTemplate = document.querySelector(`#modal-confirm`).content.cloneNode(true);
+
+    mainContent.append(modalConfirmTemplate);
+    const okButton = document.querySelector('[data-choice="ok"]');
+
+    okButton.addEventListener(`click`, () => {
+      answers.fill(`unknown`);
+
+      clearMain();
+      showScreen(greetingScreen);
+    });
+
+  });
+
+
+  function clearMain() {
+    document.querySelector(`#main`).innerHTML = ``;
+  }
+
+}
+
+export { returnGreeting, main, clearMain };

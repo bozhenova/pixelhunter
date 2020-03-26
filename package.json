@@ -2,7 +2,7 @@
   "name": "pixelhunter",
   "version": "1.0.0",
   "private": true,
-  "description": "Личный проект",
+  "description": "Личный проект Пиксель Хантер",
   "scripts": {
     "test": "mocha ./src/js/tests/*.js --require @babel/register ",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
