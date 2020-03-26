@@ -1,6 +1,9 @@
 import createElement from "./createElement.js";
 import showScreen from "./showScreen.js";
-import gameOneScreen from "./game-1.js";
+import { showGameOneScreen, getGameOneScreenTemplate } from "./game-1.js";
+import { returnGreeting, clearMain } from "./main.js";
+import { showHeader, getHeaderTemplate } from "./header.js";
+import { INITIAL_STATE, answers, QUESTIONS } from "./data.js";
 
 const rulesScreen = createElement(`<div><header class="header">
 	<button class="back">
@@ -26,19 +29,32 @@ const rulesScreen = createElement(`<div><header class="header">
 	</form>
 	</section></div>`);
 
-showScreen(rulesScreen);
+function showRules() {
+	clearMain();
+	showScreen(rulesScreen);
+	returnGreeting();
 
-const nameForm = document.querySelector(`.rules__input`);
-const nameFormButton = document.querySelector(`.rules__button`);
 
-nameForm.addEventListener(`input`, () => {
-	nameFormButton.disabled = nameForm.value ? false : true;
-});
+	const nameForm = document.querySelector(`.rules__input`);
+	const nameFormButton = document.querySelector(`.rules__button`);
 
-nameFormButton.addEventListener(`click`, (e) => {
-	e.preventDefault();
-	rulesScreen.classList.add(`hidden`);
-	gameOneScreen.classList.remove(`hidden`);
-});
+	nameForm.addEventListener(`input`, () => {
+		nameFormButton.disabled = nameForm.value ? false : true;
+	});
 
-export default rulesScreen;
+	nameFormButton.addEventListener(`click`, (e) => {
+		e.preventDefault();
+		showGameOneScreen();
+
+		const currentGameState = Object.assign({}, INITIAL_STATE);
+		const firstQuestionElement = createElement(getGameOneScreenTemplate(answers, currentGameState, QUESTIONS));
+		const firstQuestionHeaderElement = createElement(getHeaderTemplate(currentGameState));
+
+		rulesScreen.classList.add(`hidden`);
+		showHeader(firstQuestionHeaderElement);
+		showGameOneScreen(firstQuestionElement, currentGameState);
+	});
+
+
+}
+export default showRules;
