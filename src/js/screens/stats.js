@@ -1,114 +1,84 @@
 import createElement from "./createElement.js";
 import showScreen from "./showScreen.js";
+import { clearMain } from "./main.js";
+import { returnGreeting } from "./main.js";
 
-const statsScreen = createElement(`<div><header class="header">
-	<button class="back">
-		<span class="visually-hidden">Вернуться к началу</span>
-		<img src="img/sprite/arrow-left.svg">
-		<img src="img/sprite/logo-small.svg">
-	</button>
-	</header>
-	<section class="result">
+function getStatsScreenTemplate(userAnswers, gameState) {
+	return `<div><header class="header">
+		<button class="back">
+			<span class="visually-hidden">Вернуться к началу</span>
+			<img src="img/sprite/arrow-left.svg">
+			<img src="img/sprite/logo-small.svg">
+		</button>
+		</header>
+		<section class="result">
 	<h2 class="result__title">Победа!</h2>
 	<table class="result__table">
 		<tr>
 			<td class="result__number">1.</td>
 			<td colspan="2">
-				<ul class="stats">
-					<li class="stats__result stats__result--wrong"></li>
-					<li class="stats__result stats__result--slow"></li>
-					<li class="stats__result stats__result--fast"></li>
-					<li class="stats__result stats__result--correct"></li>
-					<li class="stats__result stats__result--wrong"></li>
-					<li class="stats__result stats__result--unknown"></li>
-					<li class="stats__result stats__result--slow"></li>
-					<li class="stats__result stats__result--unknown"></li>
-					<li class="stats__result stats__result--fast"></li>
-					<li class="stats__result stats__result--unknown"></li>
-				</ul>
+			<ul class="stats">${userAnswers.map((answer) => `<li class="stats__result stats__result--${answer}"></li>`).join(``)}
+		</ul>
 			</td>
 			<td class="result__points">× 100</td>
-			<td class="result__total">900</td>
+			<td class="result__total">${gameState.correctAnswerPoints}</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td class="result__extra">Бонус за скорость:</td>
-			<td class="result__extra">1 <span class="stats__result stats__result--fast"></span></td>
+			<td class="result__extra">${gameState.fastAnswersNumber} <span class="stats__result stats__result--fast"></span></td>
 			<td class="result__points">× 50</td>
-			<td class="result__total">50</td>
+			<td class="result__total">${gameState.fastAnswersBonus}</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td class="result__extra">Бонус за жизни:</td>
-			<td class="result__extra">2 <span class="stats__result stats__result--alive"></span></td>
+			<td class="result__extra">${gameState.lives}  <span class="stats__result stats__result--alive"></span></td>
 			<td class="result__points">× 50</td>
-			<td class="result__total">100</td>
+			<td class="result__total">${gameState.livesBonus} </td>
 		</tr>
 		<tr>
 			<td></td>
 			<td class="result__extra">Штраф за медлительность:</td>
-			<td class="result__extra">2 <span class="stats__result stats__result--slow"></span></td>
+			<td class="result__extra">${gameState.slowAnswersNumber} <span class="stats__result stats__result--slow"></span></td>
 			<td class="result__points">× 50</td>
-			<td class="result__total">-100</td>
+			<td class="result__total">-${gameState.slowAnswersBonus}</td>
 		</tr>
 		<tr>
-			<td colspan="5" class="result__total  result__total--final">950</td>
+			<td colspan="5" class="result__total  result__total--final">${gameState.score}</td>
 		</tr>
 	</table>
-	<table class="result__table">
+	</section></div>`;
+}
+
+function getFailScreenTemplate(userAnswers) {
+	return `<div><header class="header">
+		<button class="back">
+			<span class="visually-hidden">Вернуться к началу</span>
+			<img src="img/sprite/arrow-left.svg">
+			<img src="img/sprite/logo-small.svg">
+		</button>
+		</header>
+		<section class="result">
+	<h2 class="result__title">Вы проиграли :\(</h2>
+		<table class="result__table">
 		<tr>
-			<td class="result__number">2.</td>
+			<td class="result__number">1.</td>
 			<td>
-				<ul class="stats">
-					<li class="stats__result stats__result--wrong"></li>
-					<li class="stats__result stats__result--slow"></li>
-					<li class="stats__result stats__result--fast"></li>
-					<li class="stats__result stats__result--correct"></li>
-					<li class="stats__result stats__result--wrong"></li>
-					<li class="stats__result stats__result--unknown"></li>
-					<li class="stats__result stats__result--slow"></li>
-					<li class="stats__result stats__result--wrong"></li>
-					<li class="stats__result stats__result--fast"></li>
-					<li class="stats__result stats__result--wrong"></li>
+			<ul class="stats">${userAnswers.map((answer) => `<li class="stats__result stats__result--${answer}"></li>`).join(``)}
 				</ul>
 			</td>
 			<td class="result__total"></td>
-			<td class="result__total  result__total--final">fail</td>
+			<td class="result__total  result__total--final">0</td>
 		</tr>
-	</table>
-	<table class="result__table">
-		<tr>
-			<td class="result__number">3.</td>
-			<td colspan="2">
-				<ul class="stats">
-					<li class="stats__result stats__result--wrong"></li>
-					<li class="stats__result stats__result--slow"></li>
-					<li class="stats__result stats__result--fast"></li>
-					<li class="stats__result stats__result--correct"></li>
-					<li class="stats__result stats__result--wrong"></li>
-					<li class="stats__result stats__result--unknown"></li>
-					<li class="stats__result stats__result--slow"></li>
-					<li class="stats__result stats__result--unknown"></li>
-					<li class="stats__result stats__result--fast"></li>
-					<li class="stats__result stats__result--unknown"></li>
-				</ul>
-			</td>
-			<td class="result__points">× 100</td>
-			<td class="result__total">900</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td class="result__extra">Бонус за жизни:</td>
-			<td class="result__extra">2 <span class="stats__result stats__result--alive"></span></td>
-			<td class="result__points">× 50</td>
-			<td class="result__total">100</td>
-		</tr>
-		<tr>
-			<td colspan="5" class="result__total  result__total--final">950</td>
-		</tr>
-	</table>
-	</section></div>`);
+		</table></section>`;
+}
 
-showScreen(statsScreen);
 
-export default statsScreen;
+function showStats(screen) {
+	clearMain();
+	showScreen(screen);
+	returnGreeting();
+}
+
+export { showStats, getFailScreenTemplate, getStatsScreenTemplate };

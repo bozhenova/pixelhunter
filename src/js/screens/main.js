@@ -25,12 +25,11 @@ function returnGreeting() {
     });
 
   });
-
-
-  function clearMain() {
-    document.querySelector(`#main`).innerHTML = ``;
-  }
-
 }
+
+function clearMain() {
+  document.querySelector(`#main`).innerHTML = ``;
+}
+
 
 export { returnGreeting, main, clearMain };

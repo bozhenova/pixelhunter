@@ -1,25 +1,18 @@
 import createElement from "./createElement.js";
 import showScreen from "./showScreen.js";
-import gameThreeScreen from "./game-3.js";
+import { showGameThreeScreen, getGameThreeScreenTemplate } from "./game-3";
+import { answers, QUESTIONS, GAME_SETTINGS } from "../data/data.js";
+import { returnGreeting } from "./main.js";
+import countScore from "../data/countScore.js";
+import { getFailScreenTemplate, showStats, getStatsScreenTemplate } from "./stats.js";
+import { showHeader, getHeaderTemplate } from "./header.js";
 
-const gameTwoScreen = createElement(`<div><header class="header">
-	<button class="back">
-		<span class="visually-hidden">Вернуться к началу</span>
-		<img src="img/sprite/arrow-left.svg">
-    <img src="img/sprite/logo-small.svg">
-	</button>
-	<div class="game__timer">NN</div>
-	<div class="game__lives">
-		<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="31" height="27">
-		<img src="img/heart__full.svg" class="game__heart" alt="Life" width="31" height="27">
-		<img src="img/heart__full.svg" class="game__heart" alt="Life" width="31" height="27">
-	</div>
-	</header>
-	<section class="game">
+function getGameTwoScreenTemplate(userAnswers, gameState, questions) {
+	return `<section class="game">
 	<p class="game__task">Угадай, фото или рисунок?</p>
 	<form class="game__content  game__content--wide">
 		<div class="game__option">
-			<img src="http://placehold.it/705x455" alt="Option 1" width="705" height="455">
+			<img src=${questions[gameState[`question`] - 1][`imageSources`][0]}  alt="Option 1" width="705" height="455">
 			<label class="game__answer  game__answer--photo">
 				<input class="visually-hidden" name="question1" type="radio" value="photo">
 				<span>Фото</span>
@@ -30,29 +23,55 @@ const gameTwoScreen = createElement(`<div><header class="header">
 			</label>
 		</div>
 	</form>
-	<ul class="stats">
-		<li class="stats__result stats__result--wrong"></li>
-		<li class="stats__result stats__result--slow"></li>
-		<li class="stats__result stats__result--fast"></li>
-		<li class="stats__result stats__result--correct"></li>
-		<li class="stats__result stats__result--wrong"></li>
-		<li class="stats__result stats__result--unknown"></li>
-		<li class="stats__result stats__result--slow"></li>
-		<li class="stats__result stats__result--unknown"></li>
-		<li class="stats__result stats__result--fast"></li>
-		<li class="stats__result stats__result--unknown"></li>
-	</ul>
-	</section></div>`);
+	<ul class="stats">${userAnswers.map((answer) => `<li class="stats__result stats__result--${answer}"></li>`).join(``)}
+		</ul>
+	</section>`;
+}
 
-showScreen(gameTwoScreen);
+function showGameTwoScreen(screen, currentGameState) {
+	showScreen(screen);
+	returnGreeting();
 
-const gameTwoRadioButtons = gameTwoScreen.querySelectorAll(`input`);
+	const TOTAL_QUESTIONS_NUMBER = 10;
+	const MINIMUM_LIVES_NUMBER = 0;
+	let isFirstChecked = false;
+	let isSecondChecked = false;
+	let isFirstTrue = false;
+	let isSecondTrue = false;
+	const gameOption = screen.querySelector(`.game__option`);
 
-gameTwoRadioButtons.forEach((gameTwoRadioButton) => {
-	gameTwoRadioButton.addEventListener(`change`, () => {
-		gameTwoScreen.classList.add(`hidden`);
-		gameThreeScreen.classList.remove(`hidden`);
+	const radioButtons = gameOption.querySelectorAll(`input`);
+
+	radioButtons.forEach((radioButton, index) => {
+		radioButton.addEventListener(`change`, () => {
+			const currentQuestion = currentGameState[`question`];
+
+			if (radioButton.checked) {
+				if (QUESTIONS[currentQuestion - 1][`rightAnswers`][0] === index) {
+					answers[currentQuestion - 1] = `correct`;
+				} else {
+					answers[currentQuestion - 1] = `wrong`;
+					currentGameState[`lives`]--;
+				}
+			}
+			if (currentGameState[`lives`] < MINIMUM_LIVES_NUMBER) {
+				const failScreenElement = createElement(getFailScreenTemplate(answers));
+				showStats(failScreenElement);
+			} else if (currentGameState[`question`] === TOTAL_QUESTIONS_NUMBER) {
+				const finalStats = countScore(answers, currentGameState[`lives`], GAME_SETTINGS);
+				const statsScreenElement = createElement(getStatsScreenTemplate(answers, finalStats));
+				showStats(statsScreenElement);
+				returnGreeting();
+			} else {
+				currentGameState[`question`]++;
+				const currentQuestionElement = createElement(getGameThreeScreenTemplate(answers, currentGameState, QUESTIONS));
+				const currentQuestionHeaderElement = createElement(getHeaderTemplate(currentGameState));
+				showHeader(currentQuestionHeaderElement);
+				showGameThreeScreen(currentQuestionElement, currentGameState);
+			}
+		});
 	});
-});
+}
 
-export default gameTwoScreen;
+
+export { getGameTwoScreenTemplate, showGameTwoScreen };

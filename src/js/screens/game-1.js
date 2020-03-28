@@ -1,81 +1,101 @@
 import createElement from "./createElement.js";
 import showScreen from "./showScreen.js";
-import gameTwoScreen from "./game-2";
+import { showGameTwoScreen, getGameTwoScreenTemplate } from "./game-2";
+import { answers, QUESTIONS, GAME_SETTINGS } from "../data/data.js";
+import { returnGreeting } from "./main.js";
+import countScore from "../data/countScore.js";
+import { getFailScreenTemplate, showStats, getStatsScreenTemplate } from "./stats.js";
+import { showHeader, getHeaderTemplate } from "./header.js";
 
-const gameOneScreen = createElement(`<div><header class="header">
-	<button class="back">
-		<span class="visually-hidden">Вернуться к началу</span>
-		<img src="img/sprite/arrow-left.svg">
-		<img src="img/sprite/logo-small.svg">
-	</button>
-	<div class="game__timer">NN</div>
-	<div class="game__lives">
-		<img src="img/heart__empty.svg" class="game__heart" alt=" Missed Life" width="31" height="27">
-		<img src="img/heart__full.svg" class="game__heart" alt="Life" width="31" height="27">
-		<img src="img/heart__full.svg" class="game__heart" alt="Life" width="31" height="27">
-	</div>
-	</header>
-	<section class="game">
+function getGameOneScreenTemplate(userAnswers, gameState, questions) {
+	return `<section class="game">
 	<p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
-	<form class="game__content">
-		<div class="game__option">
-			<img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
-			<label class="game__answer game__answer--photo">
-				<input class="visually-hidden" name="question1" type="radio" value="photo">
-				<span>Фото</span>
-			</label>
-			<label class="game__answer game__answer--paint">
-				<input class="visually-hidden" name="question1" type="radio" value="paint">
-				<span>Рисунок</span>
-			</label>
-		</div>
-		<div class="game__option">
-			<img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
-			<label class="game__answer  game__answer--photo">
-				<input class="visually-hidden" name="question2" type="radio" value="photo">
-				<span>Фото</span>
-			</label>
-			<label class="game__answer  game__answer--paint">
-				<input class="visually-hidden" name="question2" type="radio" value="paint">
-				<span>Рисунок</span>
-			</label>
-		</div>
-	</form>
-	<ul class="stats">
-		<li class="stats__result stats__result--wrong"></li>
-		<li class="stats__result stats__result--slow"></li>
-		<li class="stats__result stats__result--fast"></li>
-		<li class="stats__result stats__result--correct"></li>
-		<li class="stats__result stats__result--unknown"></li>
-		<li class="stats__result stats__result--unknown"></li>
-		<li class="stats__result stats__result--unknown"></li>
-		<li class="stats__result stats__result--unknown"></li>
-		<li class="stats__result stats__result--unknown"></li>
-		<li class="stats__result stats__result--unknown"></li>
-	</ul>
-	</section></div>`);
+		<form class="game__content">
+			<div class="game__option">
+				<img src=${questions[gameState[`question`] - 1][`imageSources`][0]} alt="Option 1" width="468" height="458">
+				<label class="game__answer game__answer--photo">
+					<input class="visually-hidden" name="question1" type="radio" value="photo">
+					<span>Фото</span>
+				</label>
+				<label class="game__answer game__answer--paint">
+					<input class="visually-hidden" name="question1" type="radio" value="paint">
+					<span>Рисунок</span>
+				</label>
+			</div>
+			<div class="game__option">
+				<img src="${questions[gameState[`question`] - 1][`imageSources`][1]}" alt="Option 2" width="468" height="458">
+				<label class="game__answer  game__answer--photo">
+					<input class="visually-hidden" name="question2" type="radio" value="photo">
+					<span>Фото</span>
+				</label>
+				<label class="game__answer  game__answer--paint">
+					<input class="visually-hidden" name="question2" type="radio" value="paint">
+					<span>Рисунок</span>
+				</label>
+			</div>
+		</form>
+		<ul class="stats">${userAnswers.map((answer) => `<li class="stats__result stats__result--${answer}"></li>`).join(``)}
+		</ul>
+		</section>`;
+}
 
-showScreen(gameOneScreen);
 
-const gameOneRadioButtons = gameOneScreen.querySelectorAll(`input`);
-let isFirstChecked = false;
-let isSecondChecked = false;
+function showGameOneScreen(screen, currentGameState) {
+	showScreen(screen);
+	returnGreeting();
 
-gameOneRadioButtons.forEach((gameOneRadioButton) => {
-	gameOneRadioButton.addEventListener(`change`, (e) => {
-		if (e.target.name === `question1`) {
-			isFirstChecked = true;
-		}
+	const TOTAL_QUESTIONS_NUMBER = 10;
+	const MINIMUM_LIVES_NUMBER = 0;
+	let isFirstChecked = false;
+	let isSecondChecked = false;
+	let isFirstTrue = false;
+	let isSecondTrue = false;
+	const gameOptions = screen.querySelectorAll(`.game__option`);
 
-		if (e.target.name === `question2`) {
-			isSecondChecked = true;
-		}
+	gameOptions.forEach((gameOption, index) => {
+		const radioButtons = gameOption.querySelectorAll(`input`);
 
-		if (isFirstChecked && isSecondChecked) {
-			gameOneScreen.classList.add(`hidden`);
-			gameTwoScreen.classList.remove(`hidden`);
-		}
+		radioButtons.forEach((radioButton, choiceIndex) => {
+			radioButton.addEventListener(`change`, () => {
+				const currentQuestion = currentGameState[`question`];
+
+				if (radioButton.checked) {
+					(index === 0) ? isFirstChecked = true : isSecondChecked = true;
+					if (QUESTIONS[currentQuestion - 1][`rightAnswers`][index] !== choiceIndex) {
+						(index === 0) ? isFirstTrue = false : isSecondTrue = false;
+					} else {
+						(index === 0) ? isFirstTrue = true : isSecondTrue = true;
+					}
+				}
+
+				if (isFirstChecked && isSecondChecked) {
+					if (isFirstTrue && isSecondTrue) {
+						answers[currentQuestion - 1] = `correct`;
+					} else {
+						answers[currentQuestion - 1] = `wrong`;
+						currentGameState[`lives`]--;
+					}
+
+					if (currentGameState[`lives`] < MINIMUM_LIVES_NUMBER) {
+						const failScreenElement = createElement(getFailScreenTemplate(answers));
+						showStats(failScreenElement);
+					} else if (currentGameState[`question`] === TOTAL_QUESTIONS_NUMBER) {
+						const finalStats = countScore(answers, currentGameState[`lives`], GAME_SETTINGS);
+						const statsScreenElement = createElement(getStatsScreenTemplate(answers, finalStats));
+						showStats(statsScreenElement);
+						returnGreeting();
+					} else {
+						currentGameState[`question`]++;
+						const currentQuestionElement = createElement(getGameTwoScreenTemplate(answers, currentGameState, QUESTIONS));
+						const currentQuestionHeaderElement = createElement(getHeaderTemplate(currentGameState));
+						showHeader(currentQuestionHeaderElement);
+						showGameTwoScreen(currentQuestionElement, currentGameState);
+					}
+				}
+			});
+		});
 	});
-});
+}
 
-export default gameOneScreen;
+
+export { getGameOneScreenTemplate, showGameOneScreen };

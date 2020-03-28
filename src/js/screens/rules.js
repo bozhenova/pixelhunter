@@ -3,7 +3,7 @@ import showScreen from "./showScreen.js";
 import { showGameOneScreen, getGameOneScreenTemplate } from "./game-1.js";
 import { returnGreeting, clearMain } from "./main.js";
 import { showHeader, getHeaderTemplate } from "./header.js";
-import { INITIAL_STATE, answers, QUESTIONS } from "./data.js";
+import { INITIAL_STATE, answers, QUESTIONS } from "../data/data.js";
 
 const rulesScreen = createElement(`<div><header class="header">
 	<button class="back">
@@ -44,13 +44,11 @@ function showRules() {
 
 	nameFormButton.addEventListener(`click`, (e) => {
 		e.preventDefault();
-		showGameOneScreen();
 
 		const currentGameState = Object.assign({}, INITIAL_STATE);
 		const firstQuestionElement = createElement(getGameOneScreenTemplate(answers, currentGameState, QUESTIONS));
 		const firstQuestionHeaderElement = createElement(getHeaderTemplate(currentGameState));
 
-		rulesScreen.classList.add(`hidden`);
 		showHeader(firstQuestionHeaderElement);
 		showGameOneScreen(firstQuestionElement, currentGameState);
 	});
