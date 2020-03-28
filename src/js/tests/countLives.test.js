@@ -1,7 +1,7 @@
-import { expect } from 'chai';
-import countLives from '../data/countLives.js';
-import { INITIAL_GAME } from '../data/data.js';
-import { GAME_SETTINGS } from '../data/settings.js';
+import { expect } from "chai";
+import countLives from "../data/countLives.js";
+import { INITIAL_GAME } from "../data/data.js";
+import { GAME_SETTINGS } from "../data/data.js";
 
 describe(`Counting the player lives`, () => {
   it(`should return -1 if there is no lives left`, () => {
