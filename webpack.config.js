@@ -37,7 +37,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json']
   },
-  devtool: isDev ? 'source-map' : '',
+  // devtool: isDev ? 'source-map' : '',
   optimization: optimization(),
   devServer: {
     port: 3000,
@@ -51,7 +51,9 @@ module.exports = {
       },
       chunks: ['main']
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanAfterEveryBuildPatterns: path.join(process.cwd(), 'dist/*.*')
+    }),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, 'src/favicon.ico'),
