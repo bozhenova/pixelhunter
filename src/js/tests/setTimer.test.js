@@ -1,13 +1,13 @@
 import { expect } from "chai";
 import setTimer from "../data/setTimer.js";
-import { INITIAL_GAME } from "../data/data.js";
+import { INITIAL_STATE } from "../data/data.js";
 
 describe(`Set game timer`, () => {
   it(`should reduce time by 1 second`, () => {
     const testGame = {
       time: 29
     };
-    expect(setTimer(INITIAL_GAME).time).to.equal(29);
+    expect(setTimer(INITIAL_STATE).time).to.equal(29);
     expect(setTimer(testGame).time).to.equal(28);
   });
 

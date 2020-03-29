@@ -26,21 +26,21 @@ function getStatsScreenTemplate(userAnswers, gameState) {
 		<tr>
 			<td></td>
 			<td class="result__extra">Бонус за скорость:</td>
-			<td class="result__extra">${gameState.fastAnswersNumber} <span class="stats__result stats__result--fast"></span></td>
+			<td class="result__extra"><span class="stats__result stats__result--fast">${gameState.fastAnswersNumber}</span></td>
 			<td class="result__points">× 50</td>
 			<td class="result__total">${gameState.fastAnswersBonus}</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td class="result__extra">Бонус за жизни:</td>
-			<td class="result__extra">${gameState.lives}  <span class="stats__result stats__result--alive"></span></td>
+			<td class="result__extra"><span class="stats__result stats__result--alive">${gameState.lives}</span></td>
 			<td class="result__points">× 50</td>
 			<td class="result__total">${gameState.livesBonus} </td>
 		</tr>
 		<tr>
 			<td></td>
 			<td class="result__extra">Штраф за медлительность:</td>
-			<td class="result__extra">${gameState.slowAnswersNumber} <span class="stats__result stats__result--slow"></span></td>
+			<td class="result__extra"><span class="stats__result stats__result--slow">${gameState.slowAnswersNumber}</span></td>
 			<td class="result__points">× 50</td>
 			<td class="result__total">-${gameState.slowAnswersBonus}</td>
 		</tr>
@@ -68,10 +68,10 @@ function getFailScreenTemplate(userAnswers) {
 			<ul class="stats">${userAnswers.map((answer) => `<li class="stats__result stats__result--${answer}"></li>`).join(``)}
 				</ul>
 			</td>
-			<td class="result__total"></td>
+			<td class="result__total">0</td>
 			<td class="result__total  result__total--final">0</td>
 		</tr>
-		</table></section>`;
+		</table></section></div>`;
 }
 
 

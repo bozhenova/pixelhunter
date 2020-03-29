@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import countLives from "../data/countLives.js";
-import { INITIAL_GAME } from "../data/data.js";
+import { INITIAL_STATE } from "../data/data.js";
 import { GAME_SETTINGS } from "../data/data.js";
 
 describe(`Counting the player lives`, () => {
@@ -24,7 +24,7 @@ describe(`Counting the player lives`, () => {
       lives: 1,
       answers: []
     };
-    expect(countLives(INITIAL_GAME, GAME_SETTINGS).lives).to.equal(2);
+    expect(countLives(INITIAL_STATE, GAME_SETTINGS).lives).to.equal(2);
     expect(countLives(gameOne, GAME_SETTINGS).lives).to.equal(1);
     expect(countLives(gameTwo, GAME_SETTINGS).lives).to.equal(0);
   });
