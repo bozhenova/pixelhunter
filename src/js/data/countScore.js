@@ -1,6 +1,6 @@
 const countScore = (answers, lives, settings) => {
   let correctAnswerPoints = 0;
-  let slowAnswersBonus = 0;
+  let slowAnswersFair = 0;
   let fastAnswersBonus = 0;
   let fastAnswersNumber = 0;
   let slowAnswersNumber = 0;
@@ -21,7 +21,7 @@ const countScore = (answers, lives, settings) => {
         break;
       case `slow`:
         slowAnswersNumber++;
-        slowAnswersBonus += settings.SLOW_ANSWER_FAIR;
+        slowAnswersFair += settings.SLOW_ANSWER_FAIR;
         break;
     }
 
@@ -31,8 +31,8 @@ const countScore = (answers, lives, settings) => {
   });
 
 
-  let score = livesBonus + correctAnswerPoints + fastAnswersBonus - slowAnswersBonus;
-  const stats = { score, fastAnswersNumber, slowAnswersNumber, livesBonus, lives, fastAnswersBonus, slowAnswersBonus, correctAnswerPoints };
+  let score = livesBonus + correctAnswerPoints + fastAnswersBonus - slowAnswersFair;
+  const stats = { score, fastAnswersNumber, slowAnswersNumber, livesBonus, lives, fastAnswersBonus, slowAnswersFair, correctAnswerPoints };
   return stats;
 }
 
