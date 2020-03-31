@@ -5,7 +5,7 @@ import { returnGreeting, clearMain } from "./main.js";
 import { showHeader, getHeaderTemplate } from "./header.js";
 import { INITIAL_STATE, answers, QUESTIONS } from "../data/data.js";
 
-const rulesScreen = createElement(`<div><header class="header">
+const rulesScreen = createElement(`<div class="rules__screen"><header class="header">
 	<button class="back">
 		<span class="visually-hidden">Вернуться к началу</span>
 			<img src="img/sprite/arrow-left.svg">
@@ -34,7 +34,6 @@ function showRules() {
 	showScreen(rulesScreen);
 	returnGreeting();
 
-
 	const nameForm = document.querySelector(`.rules__input`);
 	const nameFormButton = document.querySelector(`.rules__button`);
 
@@ -51,8 +50,8 @@ function showRules() {
 
 		showHeader(firstQuestionHeaderElement);
 		showGameOneScreen(firstQuestionElement, currentGameState);
+		nameForm.value = '';
 	});
-
 
 }
 export default showRules;

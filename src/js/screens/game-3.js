@@ -1,7 +1,6 @@
 import createElement from "./createElement.js";
 import showScreen from "./showScreen.js";
 import { answers, QUESTIONS, GAME_SETTINGS } from "../data/data.js";
-import { returnGreeting } from "./main.js";
 import { showGameOneScreen, getGameOneScreenTemplate } from "./game-1";
 import countScore from "../data/countScore.js";
 import { getFailScreenTemplate, showStats, getStatsScreenTemplate } from "./stats.js";
@@ -29,7 +28,6 @@ function getGameThreeScreenTemplate(userAnswers, gameState, questions) {
 
 function showGameThreeScreen(screen, currentGameState) {
 	showScreen(screen);
-	returnGreeting();
 
 	const TOTAL_QUESTIONS_NUMBER = 10;
 	const MINIMUM_LIVES_NUMBER = 0;

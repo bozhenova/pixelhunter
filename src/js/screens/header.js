@@ -1,5 +1,6 @@
-import { returnGreeting, clearMain } from "./main.js";
+import { clearMain } from "./main.js";
 import showScreen from "./showScreen";
+import { returnGreeting } from "./main.js";
 
 function getHeaderTemplate(gameState) {
 	const INITIAL_LIVES_NUMBER = 3;

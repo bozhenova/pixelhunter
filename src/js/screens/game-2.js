@@ -2,7 +2,6 @@ import createElement from "./createElement.js";
 import showScreen from "./showScreen.js";
 import { showGameThreeScreen, getGameThreeScreenTemplate } from "./game-3";
 import { answers, QUESTIONS, GAME_SETTINGS } from "../data/data.js";
-import { returnGreeting } from "./main.js";
 import countScore from "../data/countScore.js";
 import { getFailScreenTemplate, showStats, getStatsScreenTemplate } from "./stats.js";
 import { showHeader, getHeaderTemplate } from "./header.js";
@@ -30,14 +29,9 @@ function getGameTwoScreenTemplate(userAnswers, gameState, questions) {
 
 function showGameTwoScreen(screen, currentGameState) {
 	showScreen(screen);
-	returnGreeting();
 
 	const TOTAL_QUESTIONS_NUMBER = 10;
 	const MINIMUM_LIVES_NUMBER = 0;
-	let isFirstChecked = false;
-	let isSecondChecked = false;
-	let isFirstTrue = false;
-	let isSecondTrue = false;
 	const gameOption = screen.querySelector(`.game__option`);
 
 	const radioButtons = gameOption.querySelectorAll(`input`);
