@@ -28,7 +28,7 @@ module.exports = {
   context: PATHS.src,
   mode: 'development',
   entry: {
-    main: ['@babel/polyfill', './index.js']
+    main: ['@babel/polyfill', './main.js']
   },
   output: {
     filename: '[name].[contenthash].js',
