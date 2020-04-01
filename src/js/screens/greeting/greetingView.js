@@ -1,15 +1,12 @@
-import showScreen from "./showScreen.js";
-import AbstractView from "./abstractView.js";
-import RulesView from "./rulesView.js";
-import HeaderView from "./headerView.js";
+import AbstractView from '../abstractView.js';
 
 class GreetingView extends AbstractView {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 
-	get template() {
-		return `<section class="greeting central--blur">
+  get template() {
+    return `<section class="greeting central--blur">
 	<img class="greeting__logo" src="img/logo_ph-big.svg" width="201" height="89" alt="Pixel Hunter">
 	<div class="greeting__asterisk asterisk"><span class="visually-hidden">Я просто красивая звёздочка</span>*
 	</div>
@@ -31,20 +28,17 @@ class GreetingView extends AbstractView {
 		<img src="img/icon-top.svg" width="71" height="79" alt="Топ игроков">
 	</button>
 	</section></<section></img>`;
-	}
+  }
 
-	onClick() {
-		const rulesView = new RulesView();
-		const headerView = new HeaderView();
+  onContinueButtonClick() { }
 
-		showScreen(headerView.element);
-		showScreen(rulesView.element);
-	}
-
-	bind() {
-		const continueButton = this._element.querySelector(`.greeting__continue`);
-		continueButton.addEventListener(`click`, () => this.onClick());
-	}
+  bind() {
+    const continueButton = this.element.querySelector(`.greeting__continue`);
+    continueButton.addEventListener(`click`, (e) => {
+      e.preventDefault();
+      this.onContinueButtonClick;
+    });
+  }
 
 }
 

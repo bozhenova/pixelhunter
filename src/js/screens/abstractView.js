@@ -19,6 +19,7 @@ class AbstractView {
     return this._element;
   }
 
+
   render(template) {
     const wrapper = document.createElement(`div`);
     wrapper.innerHTML = template;

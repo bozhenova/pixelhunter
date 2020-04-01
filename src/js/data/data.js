@@ -6,76 +6,208 @@ const INITIAL_STATE = Object.freeze({
 
 const QUESTIONS = [
   {
-    imageSources: [`https://k42.kn3.net/D2F0370D6.jpg`, `http://i.imgur.com/1KegWPz.jpg`],
+    type: `game-1`,
     question: `Угадайте для каждого изображения: фото или рисунок?`,
-    type: [`photo`, `paint`],
-    rightAnswers: [0, 1]
+    answers: [
+      {
+        img: `https://k42.kn3.net/CF42609C8.jpg`,
+        width: 600,
+        height: 831,
+        type: `paint`
+      },
+      {
+        img: `https://k42.kn3.net/D2F0370D6.jpg`,
+        width: 468,
+        height: 354,
+        type: `paint`
+      }
+    ]
   },
   {
-    imageSources: [`https://k42.kn3.net/D2F0370D6.jpg`],
+    type: `game-2`,
     question: `Угадайте, фото или рисунок?`,
-    type: [`photo`, `paint`],
-    rightAnswers: [0]
+    answer: {
+      img: `https://k32.kn3.net/5C7060EC5.jpg`,
+      width: 1200,
+      height: 800,
+      type: `paint`
+    }
   },
   {
-    imageSources: [`https://k32.kn3.net/5C7060EC5.jpg`, `https://i.imgur.com/DiHM5Zb.jpg`, `http://i.imgur.com/DKR1HtB.jpg`],
+    type: `game-3`,
     question: `Найдите рисунок среди изображений`,
-    rightAnswers: [2]
+    answers: [
+      {
+        img: `https://k32.kn3.net/5C7060EC5.jpg`,
+        width: 1200,
+        height: 900,
+        type: `paint`
+      },
+      {
+        img: `http://i.imgur.com/1KegWPz.jpg`,
+        width: 1080,
+        height: 720,
+        type: `photo`
+      },
+      {
+        img: `https://i.imgur.com/DiHM5Zb.jpg`,
+        width: 1264,
+        height: 1864,
+        type: `photo`
+      }
+    ]
   },
   {
-    imageSources: [`https://k42.kn3.net/D2F0370D6.jpg`, `http://i.imgur.com/1KegWPz.jpg`],
+    type: `game-1`,
     question: `Угадайте для каждого изображения: фото или рисунок?`,
-    type: [`photo`, `paint`],
-    rightAnswers: [0, 1]
+    answers: [
+      {
+        img: `https://k42.kn3.net/CF42609C8.jpg`,
+        width: 600,
+        height: 831,
+        type: `paint`
+      },
+      {
+        img: `http://i.imgur.com/DKR1HtB.jpg`,
+        width: 1120,
+        height: 2965,
+        type: `photo`
+      }
+    ]
   },
   {
-    imageSources: [`https://k42.kn3.net/D2F0370D6.jpg`],
+    type: `game-2`,
     question: `Угадайте, фото или рисунок?`,
-    type: [`photo`, `paint`],
-    rightAnswers: [0]
+    answer: {
+      img: `http://i.imgur.com/1KegWPz.jpg`,
+      width: 1080,
+      height: 720,
+      type: `photo`
+    }
   },
   {
-    imageSources: [`https://k32.kn3.net/5C7060EC5.jpg`, `https://i.imgur.com/DiHM5Zb.jpg`, `http://i.imgur.com/DKR1HtB.jpg`],
-    question: `Найдите рисунок среди изображений?`,
-    rightAnswers: [2]
-  },
-  {
-    imageSources: [`https://k42.kn3.net/D2F0370D6.jpg`, `http://i.imgur.com/1KegWPz.jpg`],
-    question: `Угадайте для каждого изображения: фото или рисунок?`,
-    type: [`photo`, `paint`],
-    rightAnswers: [0, 1]
-  },
-  {
-    imageSources: [`https://k42.kn3.net/D2F0370D6.jpg`],
-    question: `Угадайте, фото или рисунок?`,
-    type: [`photo`, `paint`],
-    rightAnswers: [0]
-  },
-  {
-    imageSources: [`https://k32.kn3.net/5C7060EC5.jpg`, `https://i.imgur.com/DiHM5Zb.jpg`, `http://i.imgur.com/DKR1HtB.jpg`],
+    type: `game-3`,
     question: `Найдите рисунок среди изображений`,
-    rightAnswers: [2]
+    answers: [
+      {
+        img: `https://i.imgur.com/DiHM5Zb.jpg`,
+        width: 1264,
+        height: 1864,
+        type: `photo`
+      },
+      {
+        img: `https://k42.kn3.net/D2F0370D6.jpg`,
+        width: 468,
+        height: 354,
+        type: `paint`
+      },
+      {
+        img: `http://i.imgur.com/DKR1HtB.jpg`,
+        width: 1120,
+        height: 2965,
+        type: `photo`
+      }
+    ]
   },
   {
-    imageSources: [`https://k42.kn3.net/D2F0370D6.jpg`, `http://i.imgur.com/1KegWPz.jpg`],
+    type: `game-1`,
     question: `Угадайте для каждого изображения: фото или рисунок?`,
-    type: [`photo`, `paint`],
-    rightAnswers: [0, 1]
+    answers: [
+      {
+        img: `http://i.imgur.com/1KegWPz.jpg`,
+        width: 1080,
+        height: 720,
+        type: `photo`
+      },
+      {
+        img: `https://k32.kn3.net/5C7060EC5.jpg`,
+        width: 1200,
+        height: 900,
+        type: `paint`
+      }
+    ]
+  },
+  {
+    type: `game-2`,
+    question: `Угадайте, фото или рисунок?`,
+    answer: {
+      img: `https://i.imgur.com/DiHM5Zb.jpg`,
+      width: 1264,
+      height: 1864,
+      type: `photo`
+    }
+  },
+  {
+    type: `game-3`,
+    question: `Найдите рисунок среди изображений`,
+    answers: [
+      {
+        img: `http://i.imgur.com/DKR1HtB.jpg`,
+        width: 1120,
+        height: 2965,
+        type: `photo`
+      },
+      {
+        img: `http://i.imgur.com/1KegWPz.jpg`,
+        width: 1080,
+        height: 720,
+        type: `photo`
+      },
+      {
+        img: `https://k42.kn3.net/D2F0370D6.jpg`,
+        width: 468,
+        height: 354,
+        type: `paint`
+      }
+    ]
+  },
+  {
+    type: `game-1`,
+    question: `Угадайте для каждого изображения: фото или рисунок?`,
+    answers: [
+      {
+        img: `https://i.imgur.com/DiHM5Zb.jpg`,
+        width: 1264,
+        height: 1864,
+        type: `photo`
+      },
+      {
+        img: `http://i.imgur.com/DKR1HtB.jpg`,
+        width: 1120,
+        height: 2965,
+        type: `photo`
+      }
+    ]
   }
 ];
 
 const GAME_SETTINGS = {
-  SAVED_LIVE_BONUS: 50,
-  CORRECT_ANSWER_BONUS: 100,
-  FAST_ANSWER_BONUS: 50,
-  SLOW_ANSWER_FAIR: 50,
-  MAX_LEVEL: 10,
-  SECOND: 1000,
-  DEAD: -1,
-  FAIL: -1,
-  END_TIME: 0
+  savedLifeBonus: 50,
+  correctAnswerBonus: 100,
+  fastAnswerBonus: 50,
+  slowAnswerFair: 50,
+  maxLevel: 10,
+  second: 1000,
+  dead: -1,
+  fail: -1,
+  endTime: 0
+};
+
+const GAME_ANSWERS_FRAMES = {
+  'game-1': {
+    width: 468,
+    height: 458
+  },
+  'game-2': {
+    width: 705,
+    height: 455
+  },
+  'game-3': {
+    width: 304,
+    height: 455
+  }
 };
 
 let answers = [`unknown`, `unknown`, `unknown`, `unknown`, `unknown`, `unknown`, `unknown`, `unknown`, `unknown`, `unknown`];
 
-export { INITIAL_STATE, GAME_SETTINGS, QUESTIONS, answers };
+export { INITIAL_STATE, GAME_SETTINGS, GAME_ANSWERS_FRAMES, QUESTIONS, answers };
