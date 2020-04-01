@@ -1,14 +1,17 @@
-const resize = (expected, given) => {
-  let actual = {};
-  let divisor;
-  if (given.width < given.height) {
-    divisor = Math.floor(given.height / expected.height);
-  } else {
-    divisor = Math.floor(given.width / expected.width);
+const resize = (frame, image) => {
+  if (!image) {
+    return frame;
   }
-  actual.width = given.width / divisor;
-  actual.height = given.height / divisor;
-  return actual;
-}
+  const coefficient = image.width / image.height;
+  const outOffWidth = image.width - frame.width;
+  const outOffHeight = image.height - frame.height;
+
+  const expected = {
+    width: (outOffWidth >= outOffHeight) ? frame.width : Math.floor(frame.height * coefficient),
+    height: (outOffHeight > outOffWidth) ? frame.height : Math.floor(frame.width / coefficient)
+  };
+
+  return expected;
+};
 
 export default resize;
