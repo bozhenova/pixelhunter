@@ -1,10 +1,11 @@
 const INITIAL_STATE = Object.freeze({
-  question: 1,
+  level: 0,
   lives: 3,
   time: 30,
+  answers: Object.freeze([])
 });
 
-const QUESTIONS = [
+const LEVELS = [
   {
     type: `game-1`,
     question: `Угадайте для каждого изображения: фото или рисунок?`,
@@ -190,7 +191,9 @@ const GAME_SETTINGS = {
   second: 1000,
   dead: -1,
   fail: -1,
-  endTime: 0
+  endTime: 0,
+  minTime: 10,
+  maxTime: 20,
 };
 
 const GAME_ANSWERS_FRAMES = {
@@ -208,6 +211,5 @@ const GAME_ANSWERS_FRAMES = {
   }
 };
 
-let answers = [`unknown`, `unknown`, `unknown`, `unknown`, `unknown`, `unknown`, `unknown`, `unknown`, `unknown`, `unknown`];
 
-export { INITIAL_STATE, GAME_SETTINGS, GAME_ANSWERS_FRAMES, QUESTIONS, answers };
+export { INITIAL_STATE, GAME_SETTINGS, GAME_ANSWERS_FRAMES, LEVELS };
