@@ -29,12 +29,3 @@ export default class RulesScreen {
 	}
 }
 
-
-// const currentGameState = Object.assign({}, INITIAL_STATE);
-// const firstQuestionElement = createElement(getGameOneScreenTemplate(answers, currentGameState, QUESTIONS));
-// const firstQuestionHeaderElement = createElement(getHeaderTemplate(currentGameState));
-
-// showHeader(firstQuestionHeaderElement);
-// showGameOneScreen(firstQuestionElement, currentGameState);
-// nameForm.value = '';
-// nameFormButton.disabled = true;
