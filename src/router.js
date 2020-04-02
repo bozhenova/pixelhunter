@@ -1,9 +1,9 @@
-import IntroScreen from './screens/intro/introScreen.js';
-import GreetingScreen from './screens/greeting/greetingScreen.js';
-import RulesScreen from './screens/rules/rulesScreen.js';
-import GameScreen from './screens/game/gameScreen.js';
-import StatsScreen from './screens/stats/statsScreen.js';
-import GameModel from './js/screens/gameModel.js';
+import IntroScreen from './js/screens/intro/introScreen.js';
+import GreetingScreen from './js/screens/greeting/greetingScreen.js';
+import RulesScreen from './js/screens/rules/rulesScreen.js';
+import GameScreen from './js/screens/game/gameScreen.js';
+import StatsScreen from './js/screens/stats/statsScreen.js';
+import GameModel from './gameModel.js';
 
 const mainContent = document.querySelector(`#main`);
 const renderScreen = (screenElement) => {
@@ -43,4 +43,3 @@ export default class Router {
     renderScreen(statistics.element);
   }
 }
-s

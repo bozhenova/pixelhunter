@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import setTimer from "../data/setTimer.js";
+import setTimer from "../utils/setTimer.js";
 import { INITIAL_STATE } from "../data/data.js";
 
 describe(`Set game timer`, () => {

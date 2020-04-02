@@ -1,4 +1,4 @@
-import AbstractView from '../abstractView.js';
+import AbstractView from '../../../abstractView.js';
 
 export default class IntroView extends AbstractView {
   constructor() {

@@ -1,4 +1,4 @@
-import AbstractView from '../abstractView.js';
+import AbstractView from '../../../abstractView.js';
 
 class GreetingView extends AbstractView {
   constructor() {
@@ -36,7 +36,7 @@ class GreetingView extends AbstractView {
     const continueButton = this.element.querySelector(`.greeting__continue`);
     continueButton.addEventListener(`click`, (e) => {
       e.preventDefault();
-      this.onContinueButtonClick;
+      this.onContinueButtonClick();
     });
   }
 

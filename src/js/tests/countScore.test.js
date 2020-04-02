@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import countScore from "../data/countScore.js";
+import countScore from "../utils/countScore.js";
 import { GAME_SETTINGS } from "../data/data.js";
 
 

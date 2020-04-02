@@ -35,9 +35,9 @@ module.exports = {
     path: PATHS.dist
   },
   resolve: {
-    extensions: [".js", ".json", ".jsx", "*"]
+    extensions: ['.js', '.json']
   },
-  // devtool: isDev ? 'source-map' : '',
+  devtool: isDev ? 'source-map' : '',
   optimization: optimization(),
   devServer: {
     port: 3000,

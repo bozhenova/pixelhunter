@@ -1,4 +1,4 @@
-import AbstractView from '../abstractView.js';
+import AbstractView from '../../../abstractView.js';
 
 class RulesView extends AbstractView {
   constructor() {
@@ -37,7 +37,7 @@ class RulesView extends AbstractView {
 
     goButton.addEventListener(`click`, (e) => {
       e.preventDefault();
-      this.onGoButtonClick;
+      this.onGoButtonClick();
     });
   }
 

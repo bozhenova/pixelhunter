@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import changeLevel from "../data/changeLevel.js";
+import changeLevel from "../utils/changeLevel.js";
 import { INITIAL_STATE } from "../data/data.js";
 import { GAME_SETTINGS } from "../data/data.js";
 

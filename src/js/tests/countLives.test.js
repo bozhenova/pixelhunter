@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import countLives from "../data/countLives.js";
+import countLives from "../utils/countLives.js";
 import { INITIAL_STATE } from "../data/data.js";
 import { GAME_SETTINGS } from "../data/data.js";
 

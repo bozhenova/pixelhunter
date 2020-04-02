@@ -1,5 +1,5 @@
 import GreetingView from './greetingView.js';
-import Router from '../../router.js';
+import Router from '../../../router.js';
 
 export default class GreetingScreen {
 	constructor() {

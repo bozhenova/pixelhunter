@@ -1,5 +1,5 @@
 import IntroView from './introView.js';
-import Router from '../../router.js';
+import Router from '../../../router.js';
 
 export default class IntroScreen {
   constructor() {
