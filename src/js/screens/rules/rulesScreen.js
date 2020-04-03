@@ -1,6 +1,6 @@
 import RulesView from './rulesView.js';
 import HeaderView from '../header/header.js';
-import Router from '../../../router.js';
+import Application from '../../../application.js';
 
 export default class RulesScreen {
 	constructor() {
@@ -16,11 +16,11 @@ export default class RulesScreen {
 	}
 
 	goPreviosScreen() {
-		this.header.onBackButtonClick = () => Router.showGreeting();
+		this.header.onBackButtonClick = () => Application.showGreeting();
 	}
 
 	goNextScreen() {
-		this.content.onGoButtonClick = () => Router.showGame(this.playerName);
+		this.content.onGoButtonClick = () => Application.showGame(this.playerName);
 	}
 
 	changeScreen() {

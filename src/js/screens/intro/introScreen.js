@@ -1,5 +1,5 @@
 import IntroView from './introView.js';
-import Router from '../../../router.js';
+import Application from '../../../application.js';
 
 export default class IntroScreen {
   constructor() {
@@ -8,6 +8,6 @@ export default class IntroScreen {
   }
 
   changeScreen() {
-    this.content.onAsteriskButtonClick = () => Router.showGreeting();
+    this.content.onAsteriskButtonClick = () => Application.showGreeting();
   }
 }

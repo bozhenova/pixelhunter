@@ -188,7 +188,7 @@ const GAME_SETTINGS = {
   fastAnswerBonus: 50,
   slowAnswerFair: 50,
   maxLevel: 10,
-  second: 1000,
+  interval: 1000,
   dead: -1,
   fail: -1,
   endTime: 0,

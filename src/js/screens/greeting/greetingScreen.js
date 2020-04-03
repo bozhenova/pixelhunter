@@ -1,5 +1,5 @@
 import GreetingView from './greetingView.js';
-import Router from '../../../router.js';
+import Application from '../../../application.js';
 
 export default class GreetingScreen {
 	constructor() {
@@ -8,6 +8,6 @@ export default class GreetingScreen {
 	}
 
 	changeScreen() {
-		this.content.onContinueButtonClick = () => Router.showRules();
+		this.content.onContinueButtonClick = () => Application.showRules();
 	}
 }
