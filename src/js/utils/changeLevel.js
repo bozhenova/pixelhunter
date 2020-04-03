@@ -3,7 +3,7 @@ const changeLevel = (game, levelNumber, maxLevel) => {
     throw new Error(`Level should be of type number`);
   }
 
-  return { ...game, question: (levelNumber >= maxLevel) ? maxLevel : ++levelNumber };
+  return { ...game, level: (levelNumber >= maxLevel) ? maxLevel : ++levelNumber };
 };
 
 export default changeLevel;

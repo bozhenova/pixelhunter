@@ -32,7 +32,7 @@ class RulesView extends AbstractView {
 
     rulesInput.addEventListener(`input`, (e) => {
       e.preventDefault();
-      goButton.disabled = (rulesInput.value.trim()) ? false : true;
+      goButton.disabled = rulesInput.value.trim() ? false : true;
     });
 
     goButton.addEventListener(`click`, (e) => {

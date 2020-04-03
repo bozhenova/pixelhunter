@@ -37,8 +37,8 @@ export default class Router {
     gameScreen.startGame();
   }
 
-  static showStats(model, result) {
-    const statistics = new StatsScreen(model, result);
+  static showStats(model) {
+    const statistics = new StatsScreen(model);
     statistics.changeScreen();
     renderScreen(statistics.element);
   }
