@@ -2,8 +2,8 @@ const countLives = (game, settings) => {
   if (typeof game.lives !== `number`) {
     throw new Error(`Lives should be of type number`);
   }
-  if (game.lives === settings.DEAD) {
-    return settings.FAIL;
+  if (game.lives === settings.dead) {
+    return settings.fail;
   }
 
   return { ...game, lives: game.lives - 1 };
