@@ -16,7 +16,7 @@ const countScore = (answers, lives, settings) => {
     if (answer.time > settings.maxTime) {
       score += settings.fastAnswerBonus;
     } else if (answer.time < settings.minTime) {
-      score -= settings.slowAnswerFair;
+      score -= settings.slowAnswerFine;
     }
     score += settings.correctAnswerBonus;
   }
