@@ -4,9 +4,9 @@ import { GAME_SETTINGS } from "../data/data.js";
 
 
 describe(`Counting user's score`, () => {
-  it(`should return -1 if the number of correct answers is less than 10`, () => {
-    expect(countScore(new Array(9), 3, GAME_SETTINGS)).to.equal(-1);
-    expect(countScore(new Array(0), 1, GAME_SETTINGS)).to.equal(-1);
+  it(`should return 0 if the number of correct answers is less than 10`, () => {
+    expect(countScore(new Array(9), 3, GAME_SETTINGS)).to.equal(0);
+    expect(countScore(new Array(0), 1, GAME_SETTINGS)).to.equal(0);
   });
   it(`should return 1150 points if the player answered 10 questions in the
     normal amount of time`, () => {

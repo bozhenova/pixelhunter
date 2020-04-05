@@ -86,21 +86,22 @@ export default class GameScreen {
     let answerType = null;
 
     switch (level.type) {
-      case `game-1`:
+      case `two-of-two`:
         const [firstInput, secondInput] = this.content.element.querySelectorAll(`input:checked`);
         const [firstAnswer, secondAnswer] = level.answers;
 
         answerType = firstInput.value === firstAnswer.type &&
           secondInput.value === secondAnswer.type;
         break;
-      case `game-2`:
-        answerType = e.target.value === level.answer.type;
+      case `tinder-like`:
+        let index = 0;
+        answerType = e.target.value === level.answers[index].type;
         break;
-      case `game-3`:
+      case `one-of-three`:
         const gameOptions = this.content.element.querySelector(`.game__content`);
         const answerIndex = [...gameOptions.children].indexOf(e.target.closest(`.game__option`));
 
-        answerType = level.answers[answerIndex].type === `paint`;
+        answerType = level.answers[answerIndex].type === `painting`;
         break;
     }
 

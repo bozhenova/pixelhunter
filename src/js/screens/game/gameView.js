@@ -11,55 +11,56 @@ export default class GameView extends AbstractView {
 
   get template() {
     const indexStep = 1;
-    const questionOneTemplate = () => {
+    const questionOneTemplate = (data) => {
       const questionTemplate = (data, index) => `<div class="game__option">
-        <img src=${data.answers.image.url} alt="Option ${index + indexStep}"
-        width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.answers.image.width).width}
-        height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.answers.image.height).height}>
+        <img src=${data.image.url} alt="Option ${index + indexStep}"
+        width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).width}
+        height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).height}>
         <label class="game__answer game__answer--photo">
           <input class="visually-hidden" name="question${index + indexStep}" type="radio" value="photo">
           <span>Фото</span>
         </label>
-        <label class="game__answer game__answer--paint">
-          <input class="visually-hidden" name="question${index + indexStep}" type="radio" value="paint">
+        <label class="game__answer game__answer--painting">
+          <input class="visually-hidden" name="question${index + indexStep}" type="radio" value="painting">
           <span>Рисунок</span>
         </label>
       </div>`;
 
       return `<form class="game__content">
-        ${this.data.map(questionTemplate).join(``)}
+        ${data.answers.map(questionTemplate).join(``)}
       </form>`;
     };
 
 
-    const questionTwoTemplate = () => {
+    const questionTwoTemplate = (data) => {
+      let index = 0;
 
       return `<form class="game__content  game__content--wide">
         <div class="game__option">
-          <img src=${this.data.answers.image.url} alt="Option 1"
-          width=${resize(GAME_ANSWERS_FRAMES[this.data.type], this.data.answers.image.width).width}
-          height=${resize(GAME_ANSWERS_FRAMES[this.data.type], this.data.answers.image.height).height}>
+          <img src=${this.data.answers[index].image.url} alt="Option 1"
+          width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.answers[index].image).width}
+          height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.answers[index].image).height}>
           <label class="game__answer  game__answer--photo">
             <input class="visually-hidden" name="question1" type="radio" value="photo">
             <span>Фото</span>
           </label>
-          <label class="game__answer  game__answer--paint">
-            <input class="visually-hidden" name="question1" type="radio" value="paint">
+          <label class="game__answer  game__answer--painting">
+            <input class="visually-hidden" name="question1" type="radio" value="painting">
             <span>Рисунок</span>
           </label>
         </div>
       </form>`;
     };
 
-    const questionThreeTemplate = () => {
+    const questionThreeTemplate = (data) => {
       const questionTemplate = (data, index) => `<div class="game__option">
-        <img src=${data.answers.image.url} alt="Option ${index + indexStep}"
-        width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.answers.image.width).width}
-        height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.answers.image.height).height}>
+        <img src=${data.image.url} alt="Option ${index + indexStep}"
+        width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).width}
+        height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).height}>
       </div>`;
 
       return `<form class="game__content  game__content--triple">
-        ${this.data.map(questionTemplate).join(``)}
+        ${data.answers.map(questionTemplate).join(``)}
       </form>`;
     };
 
@@ -70,7 +71,7 @@ export default class GameView extends AbstractView {
         currentQuestion = questionOneTemplate(this.data);
         break;
       case `tinder-like`:
-        currentQuestion = questionTwoTemplate();
+        currentQuestion = questionTwoTemplate(this.data);
         break;
       case `one-of-three`:
         currentQuestion = questionThreeTemplate(this.data);

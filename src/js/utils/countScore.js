@@ -8,6 +8,10 @@ const countScore = (answers, lives, settings) => {
     return settings.fail;
   }
 
+  if (lives <= settings.dead) {
+    return settings.fail;
+  }
+
   const correctAnswers = answers.filter(answer => answer.result === true);
 
   let score = 0;

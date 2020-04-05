@@ -30,7 +30,7 @@ export default class StatsView extends AbstractView {
 		</tr>
     `;
 
-    const slowFairTemplate = (data, setting) => `
+    const slowFineTemplate = (data, setting) => `
  		<tr>
 			<td></td>
 			<td class="result__extra">Штраф за медлительность:</td>
@@ -70,7 +70,7 @@ export default class StatsView extends AbstractView {
             </ul>
           </td>
     ${(this.result === GAME_SETTINGS.fail) ? `<td class="result__total"></td>
- <td colspan="5" class="result__total  result__total--final">0</td>` : resultTemplate(this.data)}
+ <td colspan="5" class="result__total  result__total--final">${GAME_SETTINGS.fail}</td>` : resultTemplate(this.data)}
           </table>
         </section>`;
   }
