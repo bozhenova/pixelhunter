@@ -1,4 +1,4 @@
-import Answer from './data/answer.js';
+import Answer from './js/data/answer.js';
 import { INITIAL_STATE, GAME_SETTINGS, LEVELS } from './js/data/data.js';
 import changeLevel from './js/utils/changeLevel.js';
 import countScore from './js/utils/countScore.js';
@@ -6,7 +6,8 @@ import setTimer from './js/utils/setTimer.js';
 import countLives from './js/utils/countLives.js';
 
 export default class GameModel {
-  constructor(playerName) {
+  constructor(gameData, playerName) {
+    this.gameData = gameData;
     this.playerName = playerName;
     this.restart();
   }
@@ -35,7 +36,7 @@ export default class GameModel {
     this._state = countLives(this._state, GAME_SETTINGS);
   }
 
-  isGameOver() {
+  isDead() {
     return this._state.lives <= GAME_SETTINGS.dead;
   }
 
@@ -49,12 +50,12 @@ export default class GameModel {
   }
 
   updateScore(condition) {
-    const answer = (condition) ? new Answer(true, this._state.time) : new Answer(false, this._state.time);
+    const answer = condition ? new Answer(true, this._state.time) : new Answer(false, this._state.time);
     answer.countSpeedType();
     this._state.answers.push(answer);
   }
 
   getCurrentLevel() {
-    return LEVELS[this._state.level];
+    return this.gameData[this.state.level];
   }
 }

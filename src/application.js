@@ -4,6 +4,8 @@ import RulesScreen from './js/screens/rules/rulesScreen.js';
 import GameScreen from './js/screens/game/gameScreen.js';
 import ModalScreen from './js/screens/modal/modalScreen.js';
 import StatsScreen from './js/screens/stats/statsScreen.js';
+import LoaderScreen from './js/screens/loader/loaderScreen.js';
+import ErrorScreen from './js/screens/error/errorScreen.js';
 import GameModel from './gameModel.js';
 
 const mainContent = document.querySelector(`#main`);
@@ -17,6 +19,19 @@ const renderScreen = (screenElement) => {
 
 
 export default class Application {
+
+  static set gameData(data) {
+    this._gameData = data;
+  }
+
+  static get gameData() {
+    return this._gameData;
+  }
+
+  static showLoader() {
+    const loader = new LoaderScreen();
+    renderScreen(loader.element);
+  }
 
   static showIntro() {
     const intro = new IntroScreen();
@@ -37,7 +52,7 @@ export default class Application {
   }
 
   static showGame(playerName) {
-    const model = new GameModel(playerName);
+    const model = new GameModel(this.gameData, playerName);
     const gameScreen = new GameScreen(model);
     renderScreen(gameScreen.root);
     gameScreen.startGame();
@@ -58,4 +73,10 @@ export default class Application {
   static closeModal() {
     mainContent.querySelector('.modal').remove();
   }
+
+  static showError() {
+    const error = new ErrorScreen();
+    renderScreen(error.element);
+  }
+
 }
