@@ -12,7 +12,6 @@ const checkStatus = response => {
   }
 };
 
-
 export default class Loader {
   static async loadData() {
     Application.showLoader();
@@ -26,7 +25,7 @@ export default class Loader {
     }
   }
 
-  static async saveResults(model, name = DEFAULT_NAME) {
+  static saveResults(model, name = DEFAULT_NAME) {
     const answers = model.state.answers;
     const lives = model.state.lives;
     const result = model.finalScore;
@@ -39,10 +38,7 @@ export default class Loader {
       },
       body: JSON.stringify(serverData)
     };
-    const response = await fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`, postSettings);
-    const data = await checkStatus(response);
-    return data;
-
+    return fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`, postSettings);
   }
 
   static async loadResults(name = DEFAULT_NAME) {
