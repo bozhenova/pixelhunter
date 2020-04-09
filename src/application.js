@@ -6,6 +6,8 @@ import ModalScreen from './js/screens/modal/modalScreen.js';
 import StatsScreen from './js/screens/stats/statsScreen.js';
 import LoaderScreen from './js/screens/loader/loaderScreen.js';
 import ErrorScreen from './js/screens/error/errorScreen.js';
+import { DEBUG } from './js/data/data';
+import Loader from './loader.js';
 import GameModel from './gameModel.js';
 
 const mainContent = document.querySelector(`#main`);
@@ -19,6 +21,10 @@ const renderScreen = (screenElement) => {
 
 
 export default class Application {
+
+  static start() {
+    Loader.loadData();
+  }
 
   static set gameData(data) {
     this._gameData = data;
@@ -52,16 +58,23 @@ export default class Application {
   }
 
   static showGame(playerName) {
+    DEBUG.state = (playerName === `debug`) ? true : false;
     const model = new GameModel(this.gameData, playerName);
     const gameScreen = new GameScreen(model);
     renderScreen(gameScreen.root);
     gameScreen.startGame();
   }
 
-  static showStats(model) {
-    const statistics = new StatsScreen(model);
-    statistics.changeScreen();
-    renderScreen(statistics.element);
+  static async showStats(model) {
+    try {
+      await Loader.saveResults(model, model.playerName);
+      const loadedResults = await Loader.loadResults(model.playerName);
+      const statistics = new StatsScreen(loadedResults);
+      statistics.changeScreen();
+      renderScreen(statistics.element);
+    } catch (e) {
+      Application.showError(e);
+    }
   }
 
   static showModal() {
@@ -74,8 +87,8 @@ export default class Application {
     mainContent.querySelector('.modal').remove();
   }
 
-  static showError() {
-    const error = new ErrorScreen();
+  static showError(e) {
+    const error = new ErrorScreen(e);
     renderScreen(error.element);
   }
 

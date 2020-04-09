@@ -239,6 +239,13 @@ const GAME_SETTINGS = {
   endTime: 0,
   minTime: 10,
   maxTime: 20,
+  indexStep: 1
+};
+
+const DEBUG = {
+  state: false,
+  firstStyleType: `style= "border: 5px solid rgba(0, 255, 0, 0.7)"`,
+  secondStyleType: `style="border-color:rgba(0, 255, 0, 0.7)"`
 };
 
 const GAME_ANSWERS_FRAMES = {
@@ -257,4 +264,4 @@ const GAME_ANSWERS_FRAMES = {
 };
 
 
-export { INITIAL_STATE, GAME_SETTINGS, GAME_ANSWERS_FRAMES, LEVELS };
+export { INITIAL_STATE, GAME_SETTINGS, GAME_ANSWERS_FRAMES, LEVELS, DEBUG };

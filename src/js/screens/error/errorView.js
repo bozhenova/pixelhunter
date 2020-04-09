@@ -1,8 +1,9 @@
 import AbstractView from '../../../abstractView.js';
 
 export default class ErrorView extends AbstractView {
-  constructor() {
+  constructor(error) {
     super();
+    this.error = error;
   }
 
   get template() {
@@ -10,7 +11,7 @@ export default class ErrorView extends AbstractView {
         <div class="modal__inner">
           <h2 class="modal__title">Произошла ошибка!</h2>
           <p class="modal__text modal__text--error">
-            Статус: 404. Пожалуйста, перезагрузите страницу.
+            Статус: ${this.error.message} Пожалуйста, перезагрузите страницу.
           </p>
         </div>
       </section>`;

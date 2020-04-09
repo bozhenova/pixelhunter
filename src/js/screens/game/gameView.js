@@ -1,8 +1,8 @@
 import AbstractView from '../../../abstractView.js';
-import { GAME_ANSWERS_FRAMES } from '../../data/data.js';
+import { GAME_ANSWERS_FRAMES, GAME_SETTINGS, DEBUG } from '../../data/data.js';
 import resize from '../../utils/resize.js';
 
-
+//FIXME: DEBUG AND RESIZE
 export default class GameView extends AbstractView {
   constructor(data) {
     super();
@@ -10,19 +10,18 @@ export default class GameView extends AbstractView {
   }
 
   get template() {
-    const indexStep = 1;
     const questionOneTemplate = (data) => {
       const questionTemplate = (data, index) => `<div class="game__option">
-        <img src=${data.image.url} alt="Option ${index + indexStep}"
+        <img src=${data.image.url} alt="Option ${index + GAME_SETTINGS.indexStep}"
         width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).width}
         height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).height}>
         <label class="game__answer game__answer--photo">
-          <input class="visually-hidden" name="question${index + indexStep}" type="radio" value="photo">
-          <span>Фото</span>
+          <input class="visually-hidden" name="question${index + GAME_SETTINGS.indexStep}" type="radio" value="photo"><span ${DEBUG.state && data.type === `photo` ? DEBUG.firstStyleType : ``}>
+            Фото</span>
         </label>
         <label class="game__answer game__answer--painting">
-          <input class="visually-hidden" name="question${index + indexStep}" type="radio" value="painting">
-          <span>Рисунок</span>
+          <input class="visually-hidden" name="question${index + GAME_SETTINGS.indexStep}" type="radio" value="painting"><span ${DEBUG.state && data.type === `painting` ? DEBUG.firstStyleType : ``}>
+            Рисунок</span>
         </label>
       </div>`;
 
@@ -41,20 +40,22 @@ export default class GameView extends AbstractView {
           width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.answers[index].image).width}
           height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.answers[index].image).height}>
           <label class="game__answer  game__answer--photo">
-            <input class="visually-hidden" name="question1" type="radio" value="photo">
-            <span>Фото</span>
+            <input class="visually-hidden" name="question1" type="radio" value="photo"> <span ${DEBUG.state && data.type === `photo` ? DEBUG.firstStyleType : ``}>
+              Фото</span>
           </label>
           <label class="game__answer  game__answer--painting">
-            <input class="visually-hidden" name="question1" type="radio" value="painting">
-            <span>Рисунок</span>
+            <input class="visually-hidden" name="question1" type="radio" value="painting"><span ${DEBUG.state && data.type === `painting` ? DEBUG.firstStyleType : ``}>
+              Рисунок</span>
           </label>
         </div>
       </form>`;
     };
 
     const questionThreeTemplate = (data) => {
+      const uniqueElementLength = 1;
       const questionTemplate = (data, index) => `<div class="game__option">
-        <img src=${data.image.url} alt="Option ${index + indexStep}"
+      ${DEBUG.state && this.data.answers.filter((value) => value.type === data.type).length === uniqueElementLength ? DEBUG.secondStyleType : ``}>
+        <img src=${data.image.url} alt="Option ${index + GAME_SETTINGS.indexStep}"
         width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).width}
         height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).height}>
       </div>`;
