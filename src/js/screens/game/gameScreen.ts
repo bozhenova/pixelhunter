@@ -1,8 +1,8 @@
-import HeaderView from '../header/header.js';
-import GameView from './gameView.js';
-import StatsBarView from '../stats/statsBarView.js';
-import Application from '../../../application.js';
-import { GAME_SETTINGS } from '../../data/data.js';
+import HeaderView from '../header/header';
+import GameView from './gameView';
+import StatsBarView from '../stats/statsBarView';
+import Application from '../../../application';
+import { GAME_SETTINGS } from '../../data/data';
 
 export default class GameScreen {
   constructor(model) {

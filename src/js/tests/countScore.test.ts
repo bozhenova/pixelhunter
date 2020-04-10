@@ -1,7 +1,6 @@
 import { expect } from "chai";
-import countScore from "../utils/countScore.js";
-import { GAME_SETTINGS } from "../data/data.js";
-
+import countScore from "../utils/countScore";
+import { GAME_SETTINGS } from "../data/data";
 
 describe(`Counting user's score`, () => {
   it(`should return 0 if the number of correct answers is less than 10`, () => {
@@ -13,44 +12,44 @@ describe(`Counting user's score`, () => {
     const playerAnswers = [
       {
         result: true,
-        time: 15
+        time: 15,
       },
       {
         result: true,
-        time: 15
+        time: 15,
       },
       {
         result: true,
-        time: 15
+        time: 15,
       },
       {
         result: true,
-        time: 15
+        time: 15,
       },
       {
         result: true,
-        time: 15
+        time: 15,
       },
       {
         result: true,
-        time: 15
+        time: 15,
       },
       {
         result: true,
-        time: 15
+        time: 15,
       },
       {
         result: true,
-        time: 15
+        time: 15,
       },
       {
         result: true,
-        time: 15
+        time: 15,
       },
       {
         result: true,
-        time: 15
-      }
+        time: 15,
+      },
     ];
     expect(countScore(playerAnswers, 3, GAME_SETTINGS)).to.equal(1150);
   });
@@ -59,44 +58,44 @@ describe(`Counting user's score`, () => {
     const playerAnswers = [
       {
         result: true,
-        time: 9
+        time: 9,
       },
       {
         result: true,
-        time: 9
+        time: 9,
       },
       {
         result: true,
-        time: 9
+        time: 9,
       },
       {
         result: true,
-        time: 9
+        time: 9,
       },
       {
         result: true,
-        time: 9
+        time: 9,
       },
       {
         result: true,
-        time: 9
+        time: 9,
       },
       {
         result: true,
-        time: 9
+        time: 9,
       },
       {
         result: true,
-        time: 9
+        time: 9,
       },
       {
         result: true,
-        time: 9
+        time: 9,
       },
       {
         result: true,
-        time: 9
-      }
+        time: 9,
+      },
     ];
     expect(countScore(playerAnswers, 3, GAME_SETTINGS), 650);
     expect(countScore(playerAnswers, 2, GAME_SETTINGS), 600);
@@ -107,44 +106,44 @@ describe(`Counting user's score`, () => {
     const playerAnswers = [
       {
         result: true,
-        time: 23
+        time: 23,
       },
       {
         result: true,
-        time: 23
+        time: 23,
       },
       {
         result: true,
-        time: 23
+        time: 23,
       },
       {
         result: true,
-        time: 23
+        time: 23,
       },
       {
         result: true,
-        time: 23
+        time: 23,
       },
       {
         result: true,
-        time: 23
+        time: 23,
       },
       {
         result: true,
-        time: 23
+        time: 23,
       },
       {
         result: true,
-        time: 23
+        time: 23,
       },
       {
         result: true,
-        time: 23
+        time: 23,
       },
       {
         result: true,
-        time: 23
-      }
+        time: 23,
+      },
     ];
     expect(countScore(playerAnswers, 3, GAME_SETTINGS)).to.equal(1650);
     expect(countScore(playerAnswers, 2, GAME_SETTINGS)).to.equal(1600);

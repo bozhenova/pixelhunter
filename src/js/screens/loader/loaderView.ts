@@ -1,4 +1,4 @@
-import AbstractView from '../../../abstractView.js';
+import AbstractView from "../../../abstractView";
 
 export default class LoaderView extends AbstractView {
   constructor() {
@@ -11,6 +11,4 @@ export default class LoaderView extends AbstractView {
           <div class="loader__icon"></div>
           </div>`;
   }
-
-
 }

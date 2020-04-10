@@ -1,5 +1,5 @@
 import style from './sass/style.scss';
-import Application from './application.js';
+import Application from './application';
 
 
 Application.start();

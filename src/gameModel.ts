@@ -1,9 +1,9 @@
-import Answer from './js/data/answer.js';
-import { INITIAL_STATE, GAME_SETTINGS, LEVELS } from './js/data/data.js';
-import changeLevel from './js/utils/changeLevel.js';
-import countScore from './js/utils/countScore.js';
-import setTimer from './js/utils/setTimer.js';
-import countLives from './js/utils/countLives.js';
+import Answer from './js/data/answer';
+import { INITIAL_STATE, GAME_SETTINGS, LEVELS } from './js/data/data';
+import changeLevel from './js/utils/changeLevel';
+import countScore from './js/utils/countScore';
+import setTimer from './js/utils/setTimer';
+import countLives from './js/utils/countLives';
 
 export default class GameModel {
   constructor(gameData, playerName) {

@@ -1,5 +1,5 @@
-import GreetingView from './greetingView.js';
-import Application from '../../../application.js';
+import GreetingView from './greetingView';
+import Application from '../../../application';
 
 export default class GreetingScreen {
 	constructor() {

@@ -28,14 +28,14 @@ module.exports = {
   context: PATHS.src,
   mode: 'development',
   entry: {
-    main: ['@babel/polyfill', './main.js']
+    main: ['@babel/polyfill', './main.ts']
   },
   output: {
-    filename: '[name].[contenthash].js',
+    filename: '[name].[contenthash].ts',
     path: PATHS.dist
   },
   resolve: {
-    extensions: ['.js', '.json']
+    extensions: ['.js', '.json', '.ts']
   },
   devtool: isDev ? 'source-map' : '',
   optimization: optimization(),
@@ -109,7 +109,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.js$/,
+        test: /\.ts$/,
         exclude: /node_modules/,
         loader: {
           loader: 'babel-loader',

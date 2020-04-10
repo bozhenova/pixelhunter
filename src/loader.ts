@@ -1,4 +1,4 @@
-import Application from './application.js';
+import Application from './application';
 
 const SERVER_URL = 'https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter';
 const DEFAULT_NAME = 'john';

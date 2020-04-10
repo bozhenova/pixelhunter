@@ -1,14 +1,14 @@
-import IntroScreen from './js/screens/intro/introScreen.js';
-import GreetingScreen from './js/screens/greeting/greetingScreen.js';
-import RulesScreen from './js/screens/rules/rulesScreen.js';
-import GameScreen from './js/screens/game/gameScreen.js';
-import ModalScreen from './js/screens/modal/modalScreen.js';
-import StatsScreen from './js/screens/stats/statsScreen.js';
-import LoaderScreen from './js/screens/loader/loaderScreen.js';
-import ErrorScreen from './js/screens/error/errorScreen.js';
+import IntroScreen from './js/screens/intro/introScreen';
+import GreetingScreen from './js/screens/greeting/greetingScreen';
+import RulesScreen from './js/screens/rules/rulesScreen';
+import GameScreen from './js/screens/game/gameScreen';
+import ModalScreen from './js/screens/modal/modalScreen';
+import StatsScreen from './js/screens/stats/statsScreen';
+import LoaderScreen from './js/screens/loader/loaderScreen';
+import ErrorScreen from './js/screens/error/errorScreen';
 import { DEBUG } from './js/data/data';
-import Loader from './loader.js';
-import GameModel from './gameModel.js';
+import Loader from './loader';
+import GameModel from './gameModel';
 
 const mainContent = document.querySelector(`#main`);
 

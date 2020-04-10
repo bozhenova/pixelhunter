@@ -1,5 +1,5 @@
-import ModalView from './modalView.js';
-import Application from '../../../application.js';
+import ModalView from "./modalView";
+import Application from "../../../application";
 
 export default class ModalScreen {
   constructor() {

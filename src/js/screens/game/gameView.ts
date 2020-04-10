@@ -1,6 +1,6 @@
-import AbstractView from '../../../abstractView.js';
-import { GAME_ANSWERS_FRAMES, GAME_SETTINGS, DEBUG } from '../../data/data.js';
-import resize from '../../utils/resize.js';
+import AbstractView from '../../../abstractView';
+import { GAME_ANSWERS_FRAMES, GAME_SETTINGS, DEBUG } from '../../data/data';
+import resize from '../../utils/resize';
 
 //FIXME: DEBUG AND RESIZE
 export default class GameView extends AbstractView {

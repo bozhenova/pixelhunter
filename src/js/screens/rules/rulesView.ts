@@ -1,4 +1,4 @@
-import AbstractView from '../../../abstractView.js';
+import AbstractView from "../../../abstractView";
 
 class RulesView extends AbstractView {
   constructor() {
@@ -24,7 +24,7 @@ class RulesView extends AbstractView {
 	</section>`;
   }
 
-  onGoButtonClick() { }
+  onGoButtonClick() {}
 
   bind() {
     const rulesInput = this.element.querySelector(`.rules__input`);
@@ -40,8 +40,6 @@ class RulesView extends AbstractView {
       this.onGoButtonClick();
     });
   }
-
-
 }
 
 export default RulesView;

@@ -1,4 +1,4 @@
-import AbstractView from '../../../abstractView.js';
+import AbstractView from "../../../abstractView";
 
 export default class ModalView extends AbstractView {
   constructor() {
@@ -21,19 +21,19 @@ export default class ModalView extends AbstractView {
       </section>`;
   }
 
-  onConfirm() { }
+  onConfirm() {}
 
-  onCancel() { }
+  onCancel() {}
 
   bind() {
     const confirmButton = this.element.querySelector(`[data-choice="ok"]`);
     const cancelButton = this.element.querySelector(`[data-choice="cancel"]`);
-    const closeButton = this.element.querySelector('.modal__close');
+    const closeButton = this.element.querySelector(".modal__close");
 
-    const cancelHandler = e => {
+    const cancelHandler = (e) => {
       e.preventDefault();
       this.onCancel();
-    }
+    };
 
     cancelButton.addEventListener(`click`, cancelHandler);
     closeButton.addEventListener(`click`, cancelHandler);
@@ -42,7 +42,5 @@ export default class ModalView extends AbstractView {
       e.preventDefault();
       this.onConfirm();
     });
-
-
   }
 }

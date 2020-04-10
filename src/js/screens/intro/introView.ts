@@ -1,4 +1,4 @@
-import AbstractView from '../../../abstractView.js';
+import AbstractView from "../../../abstractView";
 
 export default class IntroView extends AbstractView {
   constructor() {
@@ -25,7 +25,7 @@ export default class IntroView extends AbstractView {
         </section>`;
   }
 
-  onAsteriskButtonClick() { }
+  onAsteriskButtonClick() {}
 
   bind() {
     const asteriskButton = this.element.querySelector(`.intro__asterisk`);

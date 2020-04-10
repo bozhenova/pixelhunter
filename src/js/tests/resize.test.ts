@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import resize from '../utils/resize.js';
+import resize from "../utils/resize";
 
 const createTestForFrame = (frame) => {
   const testRatio = (given, expected) => {
@@ -10,7 +10,7 @@ const createTestForFrame = (frame) => {
   const createTest = (expected, multiplier) => {
     const given = {
       width: Math.floor(expected.width * multiplier),
-      height: Math.floor(expected.height * multiplier)
+      height: Math.floor(expected.height * multiplier),
     };
     it(`shrink ${multiplier}x: ${given.width}x${given.height} => ${expected.width}x${expected.height}`, () => {
       testRatio(given, expected);
@@ -28,7 +28,6 @@ const createTestForFrame = (frame) => {
   };
 
   describe(`Resize into frame: ${frame.width}x${frame.height}`, () => {
-
     describe(`when "width === height"`, () => {
       sequence({ width: frame.width, height: frame.height });
     });
@@ -40,7 +39,6 @@ const createTestForFrame = (frame) => {
     describe(`when "width < height"`, () => {
       sequence({ width: Math.floor(frame.width / 2), height: frame.height });
     });
-
   });
 };
 

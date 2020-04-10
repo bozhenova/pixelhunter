@@ -1,4 +1,4 @@
-import ErrorView from './errorView.js';
+import ErrorView from './errorView';
 
 export default class ErrorScreen {
   constructor(error) {

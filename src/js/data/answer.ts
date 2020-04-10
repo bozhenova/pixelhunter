@@ -1,4 +1,4 @@
-import { GAME_SETTINGS } from './data.js';
+import { GAME_SETTINGS } from './data';
 
 export default class Answer {
   constructor(result, time) {
