@@ -1,8 +1,8 @@
 import Application from './application';
 
-const SERVER_URL = 'https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter';
-const DEFAULT_NAME = 'john';
-const APP_ID = 910246;
+const SERVER_URL: string = 'https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter';
+const DEFAULT_NAME: string = 'john';
+const APP_ID: number = 910246;
 
 const checkStatus = response => {
   if (response.ok) {
@@ -25,11 +25,10 @@ export default class Loader {
     }
   }
 
-  static saveResults(model, name = DEFAULT_NAME) {
-    const answers = model.state.answers;
-    const lives = model.state.lives;
-    const result = model.finalScore;
-    debugger;
+  static saveResults(model: object, name: string = DEFAULT_NAME) {
+    const answers: string[] = model.state.answers;
+    const lives: number = model.state.lives;
+    const result: number = model.finalScore;
     const serverData = Object.assign({ name }, { answers }, { lives }, { result });
     const postSettings = {
       method: `POST`,

@@ -1,61 +1,60 @@
-import Answer from './js/data/answer';
-import { INITIAL_STATE, GAME_SETTINGS, LEVELS } from './js/data/data';
-import changeLevel from './js/utils/changeLevel';
-import countScore from './js/utils/countScore';
-import setTimer from './js/utils/setTimer';
-import countLives from './js/utils/countLives';
+import Answer from './ts/data/answer';
+import { INITIAL_STATE, GAME_SETTINGS } from './ts/data/data';
+import changeLevel from './ts/utils/changeLevel';
+import countScore from './ts/utils/countScore';
+import setTimer from './ts/utils/setTimer';
+import countLives from './ts/utils/countLives';
 
 export default class GameModel {
-  constructor(gameData, playerName) {
-    this.gameData = gameData;
-    this.playerName = playerName;
+
+  constructor(public gameData: object, public playerName: string) {
     this.restart();
   }
-  get state() {
-    return Object.freeze(this._state);
+  get state(): State {
+    return this.state;
   }
 
   get finalScore() {
-    return countScore(this._state.answers, this._state.lives, GAME_SETTINGS);
+    return countScore(this.state.answers, this.state.lives, GAME_SETTINGS);
   }
 
-  isLastLevel() {
-    return changeLevel(this._state, this._state.level, GAME_SETTINGS.maxLevel).level === GAME_SETTINGS.maxLevel;
+  isLastLevel(): boolean {
+    return changeLevel(this.state, this.state.level, GAME_SETTINGS.maxLevel).level === GAME_SETTINGS.maxLevel;
   }
 
-  getNextLevel() {
-    this._state = changeLevel(this._state, this._state.level, GAME_SETTINGS.maxLevel);
+  getNextLevel(): void {
+    this.state = changeLevel(this.state, this.state.level, GAME_SETTINGS.maxLevel);
   }
 
-  restart() {
-    const answers = [];
-    this._state = Object.assign({}, INITIAL_STATE, { answers });
+  restart(): void {
+    const answers: string[] = [];
+    this.state = Object.assign({}, INITIAL_STATE, { answers });
   }
 
-  loseLife() {
-    this._state = countLives(this._state, GAME_SETTINGS);
+  loseLife(): void {
+    this.state = countLives(this.state, GAME_SETTINGS);
   }
 
-  isDead() {
-    return this._state.lives <= GAME_SETTINGS.dead;
+  isDead(): boolean {
+    return this.state.lives <= GAME_SETTINGS.dead;
   }
 
-  tick() {
-    this._state = setTimer(this._state, GAME_SETTINGS);
+  tick(): void {
+    this.state = setTimer(this.state, GAME_SETTINGS);
   }
 
-  resetTimer() {
-    const time = INITIAL_STATE.time;
-    this._state = Object.assign({}, this._state, { time });
+  resetTimer(): void {
+    const time: number = INITIAL_STATE.time;
+    this.state = Object.assign({}, this.state, { time });
   }
 
-  updateScore(condition) {
-    const answer = condition ? new Answer(true, this._state.time) : new Answer(false, this._state.time);
+  updateScore(condition: boolean): void {
+    const answer = condition ? new Answer(true, this.state.time) : new Answer(false, this.state.time);
     answer.countSpeedType();
-    this._state.answers.push(answer);
+    this.state.answers.push(answer);
   }
 
-  getCurrentLevel() {
+  getCurrentLevel(): number {
     return this.gameData[this.state.level];
   }
 }

@@ -3,13 +3,21 @@
     "./src/main.ts"
   ],
   "compilerOptions": {
-    "outDir": "./dist",
-    "allowJs": false,
-    "target": "es2015",
+    "outDir": "./dist/",
+    "allowJs": true,
+    "target": "es6",
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "noImplicitAny": false,
-    "strictNullChecks": true
-  }
+    "noImplicitAny": true,
+    "module": "es6",
+    "strictNullChecks": false
+  },
+  "include": [
+    "src/ts/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }
