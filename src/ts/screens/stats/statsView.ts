@@ -1,15 +1,14 @@
 import AbstractView from "../../../abstractView";
 import { GAME_SETTINGS } from "../../data/data";
-
-type State = { level: number, lives: number, time: number, answers: string[] };
+import { Data } from '../../../gameModel';
 
 export default class StatsView extends AbstractView {
-  constructor(public data: string[]) {
+  constructor(public data: Data[]) {
     super();
   }
 
   get template() {
-    const speedBonusTemplate = (data: any[], setting: object) => `
+    const speedBonusTemplate = (data: string[], setting: any) => `
 	<tr>
 			<td></td>
 			<td class="result__extra">Бонус за скорость:</td>
@@ -22,7 +21,7 @@ export default class StatsView extends AbstractView {
       }</td>
 		</tr>`;
 
-    const lifeBonusTemplate = (data: State) => `
+    const lifeBonusTemplate = (data: Data) => `
     	<tr>
 			<td></td>
 			<td class="result__extra">Бонус за жизни:</td>
@@ -34,7 +33,7 @@ export default class StatsView extends AbstractView {
 		</tr>
     `;
 
-    const slowFineTemplate = (data: string[], setting: object) => `
+    const slowFineTemplate = (data: string[], setting: any) => `
  		<tr>
 			<td></td>
 			<td class="result__extra">Штраф за медлительность:</td>
@@ -48,12 +47,12 @@ export default class StatsView extends AbstractView {
 		</tr>
  `;
 
-    const resultTemplate = (data: string[]) => {
-      const speedBonusFilter = (value: object) =>
+    const resultTemplate = (data: Data) => {
+      const speedBonusFilter = (value: any) =>
         value.time > GAME_SETTINGS.maxTime && value.result;
-      const slowFineFilter = (value) =>
+      const slowFineFilter = (value: any) =>
         value.time < GAME_SETTINGS.minTime && value.result;
-      const correctAnswerFilter = (value: object) => value.result;
+      const correctAnswerFilter = (value: any) => value.result;
 
       return `<td class="result__points">× 100</td>
 			<td class="result__total">${
@@ -78,31 +77,20 @@ export default class StatsView extends AbstractView {
       </tr>`;
     };
 
-    const statsBarTemplate = (data: object) =>
+    const statsBarTemplate = (data: any) =>
       `<li class="stats__result stats__result--${data.type}" ></li>`;
-
-    const resultTableTemplate = (data: object, index: number) => `
+    const resultTableTemplate = (data: Data, index: number) => `
       <table class="result__table">
         <tr>
           <td class="result__number">${index + GAME_SETTINGS.indexStep}</td>
           <td colspan="2">
-            <ul class="stats">
-              ${[
-        ...data.answers.map(statsBarTemplate),
-        ...new Array(GAME_SETTINGS.maxLevel - data.answers.length).fill(
-          `<li class="stats__result stats__result--unknown"></li>`
-        ),
-      ].join(``)}
-            </ul>
-          </td>
-    ${
-      data.result === GAME_SETTINGS.fail
+            <ul class="stats">${[...data.answers.map(statsBarTemplate),
+      ...new Array(GAME_SETTINGS.maxLevel - data.answers.length).fill(
+        `<li class="stats__result stats__result--unknown"></li>`
+      ),].join(``)} </ul></td>
+    ${data.result === GAME_SETTINGS.fail
         ? `<td class="result__total"></td><td colspan="5" class="result__total result__total--final">${GAME_SETTINGS.fail}</td>`
-        : resultTemplate(data)
-      }
-          </table>
-      `;
-
+        : resultTemplate(data)}</table>`;
     return `<section class="result">
         <h2 class="result__title">${
       this.data[0].result === GAME_SETTINGS.fail

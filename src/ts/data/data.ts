@@ -7,7 +7,9 @@ const INITIAL_STATE: State = {
   answers: []
 };
 
-const LEVELS: object[] = [
+type GameData = { type: string, question: string, answers: { image: { url: string, width: number, height: number }, type: string }[] };
+
+const LEVELS: GameData[] = [
   {
     type: `two-of-two`,
     question: `Угадайте для каждого изображения: фото или рисунок?`,
@@ -246,28 +248,15 @@ const GAME_SETTINGS: Settings = {
   indexStep: 1
 };
 
-const DEBUG: object = {
+type Debug = { state: boolean, firstStyleType: string, secondStyleType: string };
+const DEBUG: Debug = {
   state: false,
   firstStyleType: `style= "border: 5px solid rgba(0, 255, 0, 0.7)"`,
   secondStyleType: `style="border-color:rgba(0, 255, 0, 0.7)"`
 };
 
-type Frames = {
-  'two-of-two': {
-    width: number,
-    height: number
-  },
-  'tinder-like': {
-    width: number,
-    height: number
-  },
-  'one-of-three': {
-    width: number,
-    height: number
-  }
-};
 
-const GAME_ANSWERS_FRAMES: Frames = {
+const GAME_ANSWERS_FRAMES: any = {
   'two-of-two': {
     width: 468,
     height: 458
@@ -283,4 +272,4 @@ const GAME_ANSWERS_FRAMES: Frames = {
 };
 
 
-export { INITIAL_STATE, GAME_SETTINGS, GAME_ANSWERS_FRAMES, LEVELS, DEBUG };
+export { INITIAL_STATE, GAME_SETTINGS, GAME_ANSWERS_FRAMES, LEVELS, DEBUG, State, Settings, GameData };

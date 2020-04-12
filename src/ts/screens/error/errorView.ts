@@ -4,7 +4,7 @@ import AbstractView from '../../../abstractView';
 
 export default class ErrorView extends AbstractView {
 
-  constructor(public error: object) {
+  constructor(public error: any) {
     super();
   }
 

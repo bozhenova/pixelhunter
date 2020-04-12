@@ -1,13 +1,17 @@
 import RulesView from "./rulesView";
 import HeaderView from "../header/header";
 import Application from "../../../application";
+import { State } from "../../data/data";
 
 export default class RulesScreen {
-  element: HTMLElement
-  header: HTMLDivElement
+  state: State;
+  element: HTMLElement;
+  content: RulesView;
+  header: HeaderView;
+
 
   constructor() {
-    this.header = new HeaderView();
+    this.header = new HeaderView(this.state);
     this.content = new RulesView();
     this.element = document.createElement(`div`);
     this.element.append(this.header.element);
@@ -15,7 +19,8 @@ export default class RulesScreen {
   }
 
   get playerName() {
-    return this.element.querySelector(`.rules__input`).value;
+    const input: HTMLInputElement = this.element.querySelector(`.rules__input`);
+    return input.value;
   }
 
   goPreviosScreen() {

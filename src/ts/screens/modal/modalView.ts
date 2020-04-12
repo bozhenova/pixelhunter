@@ -30,7 +30,7 @@ export default class ModalView extends AbstractView {
     const cancelButton = this.element.querySelector(`[data-choice="cancel"]`);
     const closeButton = this.element.querySelector(".modal__close");
 
-    const cancelHandler = (e) => {
+    const cancelHandler = (e: any) => {
       e.preventDefault();
       this.onCancel();
     };

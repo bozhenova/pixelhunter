@@ -1,8 +1,9 @@
 import ErrorView from './errorView';
 
 export default class ErrorScreen {
-  content: object
-  element: HTMLElement
+  element: HTMLElement;
+  content: ErrorView;
+
 
   constructor(public error: object) {
     this.content = new ErrorView(error);

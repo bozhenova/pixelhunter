@@ -1,10 +1,11 @@
 import Application from './application';
+import { GameModel } from './gameModel';
 
 const SERVER_URL: string = 'https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter';
 const DEFAULT_NAME: string = 'john';
-const APP_ID: number = 910246;
+const APP_ID: string = '910246';
 
-const checkStatus = response => {
+const checkStatus = (response: any) => {
   if (response.ok) {
     return response;
   } else {
@@ -18,14 +19,14 @@ export default class Loader {
     try {
       const response = await fetch(`${SERVER_URL}/questions`);
       const data = await checkStatus(response).json();
-      Application.gameData = data;
+      Application._gameData = data;
       Application.showIntro();
     } catch (e) {
       Application.showError(e);
     }
   }
 
-  static saveResults(model: object, name: string = DEFAULT_NAME) {
+  static saveResults(model: GameModel, name: string = DEFAULT_NAME) {
     const answers: string[] = model.state.answers;
     const lives: number = model.state.lives;
     const result: number = model.finalScore;

@@ -1,5 +1,7 @@
 
-const resize = (frame: object, image: object) => {
+type Sizes = { width: number, height: number };
+
+const resize = (frame: Sizes, image: Sizes) => {
 
   const coefficient = image.width / image.height;
 

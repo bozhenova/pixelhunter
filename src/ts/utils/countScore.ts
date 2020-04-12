@@ -1,8 +1,7 @@
-const countScore = (answers: [], lives: number, settings: object) => {
+import { Settings } from '../data/data';
 
-  if (!Array.isArray(answers)) {
-    throw new Error(`Answers should be of type array`);
-  }
+const countScore = (answers: any[], lives: number, settings: Settings) => {
+
 
   if (answers.length < settings.maxLevel) {
     return settings.fail;

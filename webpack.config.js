@@ -35,7 +35,7 @@ module.exports = {
     path: PATHS.dist
   },
   resolve: {
-    extensions: ['.js', '.json', '.ts']
+    extensions: ['.js', '.json', '.ts', '.scss', '.css']
   },
   devtool: isDev ? 'source-map' : '',
   optimization: optimization(),
@@ -49,7 +49,7 @@ module.exports = {
       minify: {
         collapseWhitespace: isProd
       },
-      chunks: ['main']
+      chunks: ['common', 'main']
     }),
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: path.join(process.cwd(), 'dist/*.*')
@@ -69,11 +69,6 @@ module.exports = {
   ],
   module: {
     rules: [
-      {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
-        exclude: /node_modules/
-      },
       {
         test: /\.(png|jpg|svg|gif)$/,
         use: [
@@ -102,6 +97,7 @@ module.exports = {
         test: /\.(css|s[ac]ss)$/,
         use: [
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          // { loader: "css-modules-typescript-loader" },
           {
             loader: 'css-loader',
             options: {
@@ -124,7 +120,12 @@ module.exports = {
             ]
           }
         }
-      }
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        exclude: /node_modules/
+      },
     ]
   }
 }

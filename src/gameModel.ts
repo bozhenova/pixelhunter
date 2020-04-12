@@ -1,17 +1,20 @@
 import Answer from './ts/data/answer';
-import { INITIAL_STATE, GAME_SETTINGS } from './ts/data/data';
+import { INITIAL_STATE, GAME_SETTINGS, State, GameData } from './ts/data/data';
 import changeLevel from './ts/utils/changeLevel';
 import countScore from './ts/utils/countScore';
 import setTimer from './ts/utils/setTimer';
 import countLives from './ts/utils/countLives';
 
-export default class GameModel {
+export type Data = { level: number, lives: number, result: number, answers: string[] };
 
-  constructor(public gameData: object, public playerName: string) {
+export class GameModel {
+  protected _state: State;
+
+  constructor(protected _gameData: GameData[], public playerName: string) {
     this.restart();
   }
   get state(): State {
-    return this.state;
+    return this._state;
   }
 
   get finalScore() {
@@ -23,16 +26,16 @@ export default class GameModel {
   }
 
   getNextLevel(): void {
-    this.state = changeLevel(this.state, this.state.level, GAME_SETTINGS.maxLevel);
+    this._state = changeLevel(this.state, this.state.level, GAME_SETTINGS.maxLevel);
   }
 
   restart(): void {
-    const answers: string[] = [];
-    this.state = Object.assign({}, INITIAL_STATE, { answers });
+    const answers: object[] = [];
+    this._state = Object.assign({}, INITIAL_STATE, { answers });
   }
 
   loseLife(): void {
-    this.state = countLives(this.state, GAME_SETTINGS);
+    this._state = countLives(this.state, GAME_SETTINGS);
   }
 
   isDead(): boolean {
@@ -40,21 +43,21 @@ export default class GameModel {
   }
 
   tick(): void {
-    this.state = setTimer(this.state, GAME_SETTINGS);
+    this._state = setTimer(this.state, GAME_SETTINGS);
   }
 
   resetTimer(): void {
     const time: number = INITIAL_STATE.time;
-    this.state = Object.assign({}, this.state, { time });
+    this._state = Object.assign({}, this.state, { time });
   }
 
   updateScore(condition: boolean): void {
-    const answer = condition ? new Answer(true, this.state.time) : new Answer(false, this.state.time);
+    const answer: any = condition ? new Answer(true, this.state.time) : new Answer(false, this.state.time);
     answer.countSpeedType();
     this.state.answers.push(answer);
   }
 
-  getCurrentLevel(): number {
-    return this.gameData[this.state.level];
+  getCurrentLevel() {
+    return this._gameData[this.state.level];
   }
 }

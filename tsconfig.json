@@ -8,16 +8,15 @@
     "target": "es6",
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true,
-    "noImplicitAny": true,
+    "sourceMap": false,
+    "noImplicitAny": false,
     "module": "es6",
     "strictNullChecks": false
   },
   "include": [
-    "src/ts/*.ts"
+    "src/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
+    "node_modules"
   ]
 }

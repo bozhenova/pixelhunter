@@ -149,7 +149,4 @@ describe(`Counting user's score`, () => {
     expect(countScore(playerAnswers, 2, GAME_SETTINGS)).to.equal(1600);
     expect(countScore(playerAnswers, 1, GAME_SETTINGS)).to.equal(1550);
   });
-  it(`should not allow to set non array value`, () => {
-    expect(() => countScore({}, 3)).to.throw(Error);
-  });
 });

@@ -24,11 +24,11 @@ class RulesView extends AbstractView {
 	</section>`;
   }
 
-  onGoButtonClick() {}
+  onGoButtonClick() { }
 
   bind() {
-    const rulesInput = this.element.querySelector(`.rules__input`);
-    const goButton = this.element.querySelector(`.rules__button`);
+    const rulesInput: HTMLInputElement = this.element.querySelector(`.rules__input`);
+    const goButton: HTMLInputElement = this.element.querySelector(`.rules__button`);
 
     rulesInput.addEventListener(`input`, (e) => {
       e.preventDefault();

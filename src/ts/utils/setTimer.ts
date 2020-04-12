@@ -1,5 +1,7 @@
-const setTimer = (state: object, settings: object) => {
-  const second = 1;
+import { Settings, State } from '../data/data';
+
+const setTimer = (state: State, settings: Settings) => {
+  const second: number = 1;
 
   return {
     ...state, time: (state.time > settings.endTime)

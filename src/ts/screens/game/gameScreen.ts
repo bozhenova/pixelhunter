@@ -2,12 +2,16 @@ import HeaderView from '../header/header';
 import GameView from './gameView';
 import StatsBarView from '../stats/statsBarView';
 import Application from '../../../application';
-import { GAME_SETTINGS } from '../../data/data';
+import { GAME_SETTINGS, GameData, State } from '../../data/data';
 
 export default class GameScreen {
-  public header: HTMLDivElement
+  public header: HeaderView;
+  public content: GameView;
+  public root: HTMLElement;
+  public state: State;
+  public timer: any;
 
-  constructor(public model: object) {
+  constructor(public model: any) {
     this.header = new HeaderView(this.model.state);
     this.content = new GameView(this.model.getCurrentLevel());
     this.root = document.createElement(`div`);
@@ -18,7 +22,7 @@ export default class GameScreen {
   }
 
   startGame() {
-    this.content.onAnswer = (e: MouseEvent) => {
+    this.content.onAnswer = (e) => {
       this.answer(this.model.getCurrentLevel(), e);
       this.changeLevel();
     };
@@ -55,7 +59,7 @@ export default class GameScreen {
     this.header = header;
   }
 
-  changeContentView(view: object) {
+  changeContentView(view: any) {
     this.root.replaceChild(view.element, this.content.element);
     this.content = view;
   }
@@ -68,7 +72,7 @@ export default class GameScreen {
     const content = new GameView(this.model.getCurrentLevel());
     this.changeContentView(content);
     this.content.element.append(new StatsBarView(this.model.state).element);
-    this.content.onAnswer = (e) => {
+    this.content.onAnswer = (e: any) => {
       this.answer(this.model.getCurrentLevel(), e);
       this.continueGame();
     };
@@ -82,13 +86,13 @@ export default class GameScreen {
     Application.showStats(this.model);
   }
 
-  answer(level: number, e: MouseEvent) {
+  answer(level: GameData, e: any) {
 
     let answerType: boolean = null;
 
     switch (level.type) {
       case `two-of-two`:
-        const [firstInput, secondInput] = this.content.element.querySelectorAll(`input:checked`);
+        const [firstInput, secondInput]: any = this.content.element.querySelectorAll(`input:checked`);
         const [firstAnswer, secondAnswer] = level.answers;
 
         answerType = firstInput.value === firstAnswer.type &&

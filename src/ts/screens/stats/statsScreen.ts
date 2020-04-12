@@ -3,12 +3,14 @@ import HeaderView from "../header/header";
 import Application from "../../../application";
 
 export default class StatsScreen {
-  public data: any[]
-  public element: HTMLDivElement
+  element: HTMLDivElement
+  header: HeaderView;
+  content: StatsView;
 
-  constructor(data: any[]) {
+
+  constructor(public data: any) {
     this.data = data.reverse();
-    this.header = new HeaderView();
+    this.header = new HeaderView(data);
     this.content = new StatsView(data);
     this.element = document.createElement(`div`);
     this.element.append(this.header.element);

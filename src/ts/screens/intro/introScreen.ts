@@ -2,7 +2,8 @@ import IntroView from "./introView";
 import Application from "../../../application";
 
 export default class IntroScreen {
-  element: HTMLElement
+  content: IntroView;
+  element: HTMLElement;
 
   constructor() {
     this.content = new IntroView();

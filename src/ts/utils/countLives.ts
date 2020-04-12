@@ -1,6 +1,8 @@
-const countLives = (game: object, settings: object) => {
+import { Settings, State } from '../data/data';
+
+const countLives = (game: State, settings: Settings) => {
   if (game.lives === settings.dead) {
-    return settings.fail;
+    return { ...game, lives: settings.dead };
   }
 
   return { ...game, lives: game.lives - 1 };

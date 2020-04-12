@@ -1,15 +1,15 @@
 import AbstractView from '../../../abstractView';
-import { GAME_ANSWERS_FRAMES, GAME_SETTINGS, DEBUG } from '../../data/data';
+import { GAME_ANSWERS_FRAMES, GAME_SETTINGS, DEBUG, GameData } from '../../data/data';
 import resize from '../../utils/resize';
 
 export default class GameView extends AbstractView {
-  constructor(public data: object) {
+  constructor(public data: GameData) {
     super();
   }
 
   get template() {
-    const questionOneTemplate = (data: object) => {
-      const questionTemplate = (data: object, index: number) => `<div class="game__option">
+    const questionOneTemplate = (data: any) => {
+      const questionTemplate = (data: any, index: number) => `<div class="game__option">
         <img src=${data.image.url} alt="Option ${index + GAME_SETTINGS.indexStep}"
         width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).width}
         height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).height}>
@@ -29,7 +29,7 @@ export default class GameView extends AbstractView {
     };
 
 
-    const questionTwoTemplate = (data: object) => {
+    const questionTwoTemplate = (data: GameData) => {
       let index: number = 0;
 
       return `<form class="game__content  game__content--wide">
@@ -49,10 +49,10 @@ export default class GameView extends AbstractView {
       </form>`;
     };
 
-    const questionThreeTemplate = (data: object) => {
+    const questionThreeTemplate = (data: GameData) => {
       const uniqueElementLength: number = 1;
-      const questionTemplate = (data: object, index: number) => `<div class="game__option">
-      ${DEBUG.state && this.data.answers.filter((value: object) => value.type === data.type).length === uniqueElementLength ? DEBUG.secondStyleType : ``}>
+      const questionTemplate = (data: any, index: number) => `<div class="game__option">
+      ${DEBUG.state && this.data.answers.filter((value: any) => value.type === data.type).length === uniqueElementLength ? DEBUG.secondStyleType : ``}>
         <img src=${data.image.url} alt="Option ${index + GAME_SETTINGS.indexStep}"
         width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).width}
         height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).height}>
@@ -83,7 +83,7 @@ export default class GameView extends AbstractView {
     </section>`;
   }
 
-  onAnswer() { }
+  onAnswer(e: any): void { }
 
   bind() {
     switch (this.data.type) {
@@ -91,11 +91,11 @@ export default class GameView extends AbstractView {
         const gameOneAnswers: NodeListOf<HTMLInputElement> = this.element.querySelectorAll(`input`);
 
         for (const answer of gameOneAnswers) {
-          answer.addEventListener(`change`, () => {
+          answer.addEventListener(`change`, (e) => {
             const checkedInputs = this.element.querySelectorAll(`input:checked`);
             const answersNumber = 2;
             if (checkedInputs.length === answersNumber) {
-              this.onAnswer();
+              this.onAnswer(e);
             }
           });
         }

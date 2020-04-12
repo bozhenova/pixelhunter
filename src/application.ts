@@ -6,9 +6,9 @@ import ModalScreen from './ts/screens/modal/modalScreen';
 import StatsScreen from './ts/screens/stats/statsScreen';
 import LoaderScreen from './ts/screens/loader/loaderScreen';
 import ErrorScreen from './ts/screens/error/errorScreen';
-import { DEBUG } from './ts/data/data';
+import { DEBUG, GameData } from './ts/data/data';
 import Loader from './loader';
-import GameModel from './gameModel';
+import { GameModel, Data } from './gameModel';
 
 const mainContent = document.querySelector(`#main`);
 
@@ -19,22 +19,20 @@ const renderScreen = (screenElement: HTMLElement) => {
   mainContent.append(screenElement);
 };
 
-type Model = { level: number, lives: number, result: number, answers: string[] };
-
 export default class Application {
-  private _gameData: object
-  element: HTMLElement
-  model: object
+  element: HTMLElement;
+  model: Data;
+  static _gameData: GameData[];
 
   static start(): void {
     Loader.loadData();
   }
 
-  static set gameData(data: object) {
+  static set gameData(data: GameData[]) {
     this._gameData = data;
   }
 
-  static get gameData(): object {
+  static get gameData(): GameData[] {
     return this._gameData;
   }
 
@@ -63,17 +61,18 @@ export default class Application {
 
   static showGame(playerName: string): void {
     DEBUG.state = (playerName === `debug`) ? true : false;
-    const model: Model = new GameModel(this.gameData, playerName);
+    const model = new GameModel(this._gameData, playerName);
     const gameScreen = new GameScreen(model);
     renderScreen(gameScreen.root);
     gameScreen.startGame();
   }
 
-  static async showStats() {
+  static async showStats(model: any) {
+    debugger;
     try {
       await Loader.saveResults(model, model.playerName);
       const loadedResults = await Loader.loadResults(model.playerName);
-      const statistics = new StatsScreen(loadedResults);
+      const statistics: StatsScreen = new StatsScreen(loadedResults);
       statistics.changeScreen();
       renderScreen(statistics.element);
     } catch (e) {

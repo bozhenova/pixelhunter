@@ -1,11 +1,10 @@
 import AbstractView from "../../../abstractView";
-import { INITIAL_STATE } from "../../data/data";
+import { INITIAL_STATE, State } from "../../data/data";
 
-type State = { level: number, lives: number, time: number, answers: string[] };
 
 export default class HeaderView extends AbstractView {
-	public state: State
-	constructor() {
+
+	constructor(public state: State) {
 		super();
 	}
 
