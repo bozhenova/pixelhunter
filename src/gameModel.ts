@@ -5,7 +5,7 @@ import countScore from './ts/utils/countScore';
 import setTimer from './ts/utils/setTimer';
 import countLives from './ts/utils/countLives';
 
-export type Data = { level: number, lives: number, result: number, answers: string[] };
+export type Data = { level: number, lives: number, result: number, answers: any[] };
 
 export class GameModel {
   protected _state: State;

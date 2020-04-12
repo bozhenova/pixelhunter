@@ -10,7 +10,7 @@ export default class StatsScreen {
 
   constructor(public data: any) {
     this.data = data.reverse();
-    this.header = new HeaderView(data);
+    this.header = new HeaderView();
     this.content = new StatsView(data);
     this.element = document.createElement(`div`);
     this.element.append(this.header.element);

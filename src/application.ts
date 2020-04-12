@@ -90,8 +90,8 @@ export default class Application {
     mainContent.querySelector('.modal').remove();
   }
 
-  static showError(e: object): void {
-    const error = new ErrorScreen(e);
+  static showError(e: any): void {
+    const error: ErrorScreen = new ErrorScreen(e);
     renderScreen(error.element);
   }
 

@@ -14,18 +14,10 @@ export default class IntroView extends AbstractView {
             <sup>*</sup> Это не фото. Это рисунок маслом нидерландского
             художника-фотореалиста Tjalf Sparnaay.
           </p>
-          <button class="intro__top top" type="button">
-            <img
-              src="img/icon-top.svg"
-              width="71"
-              height="79"
-              alt="Топ игроков"
-            />
-          </button>
         </section>`;
   }
 
-  onAsteriskButtonClick() {}
+  onAsteriskButtonClick() { }
 
   bind() {
     const asteriskButton = this.element.querySelector(`.intro__asterisk`);

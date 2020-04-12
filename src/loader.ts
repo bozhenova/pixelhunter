@@ -27,7 +27,7 @@ export default class Loader {
   }
 
   static saveResults(model: GameModel, name: string = DEFAULT_NAME) {
-    const answers: string[] = model.state.answers;
+    const answers: any[] = model.state.answers;
     const lives: number = model.state.lives;
     const result: number = model.finalScore;
     const serverData = Object.assign({ name }, { answers }, { lives }, { result });
@@ -41,7 +41,7 @@ export default class Loader {
     return fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`, postSettings);
   }
 
-  static async loadResults(name = DEFAULT_NAME) {
+  static async loadResults(name: string = DEFAULT_NAME) {
     const response = await fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`);
     const data = await checkStatus(response);
     return data.json();

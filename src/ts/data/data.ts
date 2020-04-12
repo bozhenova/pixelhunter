@@ -1,4 +1,4 @@
-type State = { level: number, lives: number, time: number, answers: string[] };
+type State = { level: number, lives: number, time: number, answers: any[] };
 
 const INITIAL_STATE: State = {
   level: 0,

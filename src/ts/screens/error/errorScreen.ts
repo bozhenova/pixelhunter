@@ -5,7 +5,7 @@ export default class ErrorScreen {
   content: ErrorView;
 
 
-  constructor(public error: object) {
+  constructor(public error: any) {
     this.content = new ErrorView(error);
     this.element = this.content.element;
   }

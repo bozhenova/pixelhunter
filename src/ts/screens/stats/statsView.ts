@@ -8,7 +8,8 @@ export default class StatsView extends AbstractView {
   }
 
   get template() {
-    const speedBonusTemplate = (data: string[], setting: any) => `
+    debugger;
+    const speedBonusTemplate = (data: any[], setting: any) => `
 	<tr>
 			<td></td>
 			<td class="result__extra">Бонус за скорость:</td>
@@ -33,7 +34,7 @@ export default class StatsView extends AbstractView {
 		</tr>
     `;
 
-    const slowFineTemplate = (data: string[], setting: any) => `
+    const slowFineTemplate = (data: any[], setting: any) => `
  		<tr>
 			<td></td>
 			<td class="result__extra">Штраф за медлительность:</td>

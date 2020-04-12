@@ -4,7 +4,7 @@ import { INITIAL_STATE, State } from "../../data/data";
 
 export default class HeaderView extends AbstractView {
 
-	constructor(public state: State) {
+	constructor(public state?: State) {
 		super();
 	}
 

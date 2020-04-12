@@ -24,9 +24,6 @@ class GreetingView extends AbstractView {
 		<span class="visually-hidden">Продолжить</span>
 	<img src="img/sprite/arrow-right.svg">
 	</button>
-	<button class="greeting__top top" type="button">
-		<img src="img/icon-top.svg" width="71" height="79" alt="Топ игроков">
-	</button>
 	</section></<section></img>`;
 	}
 
