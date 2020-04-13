@@ -31,8 +31,8 @@ module.exports = {
     main: ['@babel/polyfill', './main.ts']
   },
   output: {
-    filename: '[name].[contenthash].js',
-    path: PATHS.dist
+    filename: '[name].[hash].js',
+    path: PATHS.dist,
   },
   resolve: {
     extensions: ['.js', '.json', '.ts', '.scss', '.css']
@@ -49,7 +49,7 @@ module.exports = {
       minify: {
         collapseWhitespace: isProd
       },
-      chunks: ['common', 'main']
+      chunks: ['main']
     }),
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: path.join(process.cwd(), 'dist/*.*')
@@ -64,56 +64,16 @@ module.exports = {
       { from: `${PATHS.src}/fonts`, to: `${PATHS.dist}/fonts` }
     ]),
     new MiniCssExtractPlugin({
-      filename: './style.[contenthash].css'
+      filename: './style.[hash].css'
     })
   ],
   module: {
     rules: [
       {
-        test: /\.(png|jpg|svg|gif)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: `${PATHS.dist}/img`
-            }
-          },
-        ]
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: `${PATHS.dist}/fonts`
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(css|s[ac]ss)$/,
-        use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          // { loader: "css-modules-typescript-loader" },
-          {
-            loader: 'css-loader',
-            options: {
-              url: isProd
-            }
-          },
-          'postcss-loader',
-          'resolve-url-loader',
-          'sass-loader',
-        ]
-      },
-      {
-        test: /\.ts$/,
+        test: /\.tsx$/,
         exclude: /node_modules/,
         loader: {
-          loader: 'babel-loader',
+          loader: 'babel-loder',
           options: {
             presets: [
               '@babel/preset-env'
@@ -126,6 +86,51 @@ module.exports = {
         loader: 'awesome-typescript-loader',
         exclude: /node_modules/
       },
+      {
+        test: /\.(css|s[ac]ss)$/,
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+
+          {
+            loader: 'css-loader',
+            options: {
+              url: false
+            }
+          },
+          'postcss-loader',
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: `${PATHS.dist}/fonts`,
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|svg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: `${PATHS.dist}/img`
+            }
+          },
+        ]
+      }
     ]
   }
 }
