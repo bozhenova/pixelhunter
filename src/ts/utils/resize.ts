@@ -1,7 +1,7 @@
 
-type Sizes = { width: number, height: number };
+export type Sizes = { width: number, height: number };
 
-const resize = (frame: Sizes, image: Sizes) => {
+export const resize = (frame: Sizes, image: Sizes) => {
 
   const coefficient = image.width / image.height;
 
@@ -16,5 +16,3 @@ const resize = (frame: Sizes, image: Sizes) => {
     height: actualHeight
   };
 };
-
-export default resize;

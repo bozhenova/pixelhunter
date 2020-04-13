@@ -7,7 +7,7 @@ export default class StatsBarView extends AbstractView {
   }
 
   get template() {
-    const resultTemplate = (answer: any) =>
+    const resultTemplate = (answer: State["answers"][0]) =>
       `<li class="stats__result stats__result--${answer.type}"></li>`;
 
     return `<ul class="stats">

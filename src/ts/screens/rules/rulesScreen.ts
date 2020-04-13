@@ -19,7 +19,7 @@ export default class RulesScreen {
   }
 
   get playerName() {
-    const input: HTMLInputElement = this.element.querySelector(`.rules__input`);
+    const input = this.element.querySelector(`.rules__input`) as HTMLInputElement;
     return input.value;
   }
 

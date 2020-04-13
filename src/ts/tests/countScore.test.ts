@@ -13,42 +13,52 @@ describe(`Counting user's score`, () => {
       {
         result: true,
         time: 15,
+        type: 'correct'
       },
       {
         result: true,
         time: 15,
+        type: 'correct'
       },
       {
         result: true,
         time: 15,
+        type: 'correct'
       },
       {
         result: true,
         time: 15,
+        type: 'correct'
       },
       {
         result: true,
         time: 15,
+        type: 'correct'
       },
       {
         result: true,
         time: 15,
+        type: 'correct'
       },
       {
         result: true,
         time: 15,
+        type: 'correct'
       },
       {
         result: true,
         time: 15,
+        type: 'correct'
       },
       {
         result: true,
         time: 15,
+        type: 'correct'
       },
       {
         result: true,
         time: 15,
+        type: 'correct'
       },
     ];
     expect(countScore(playerAnswers, 3, GAME_SETTINGS)).to.equal(1150);
@@ -59,47 +69,57 @@ describe(`Counting user's score`, () => {
       {
         result: true,
         time: 9,
+        type: 'slow'
       },
       {
         result: true,
         time: 9,
+        type: 'slow'
       },
       {
         result: true,
         time: 9,
+        type: 'slow'
       },
       {
         result: true,
         time: 9,
+        type: 'slow'
       },
       {
         result: true,
         time: 9,
+        type: 'slow'
       },
       {
         result: true,
         time: 9,
+        type: 'slow'
       },
       {
         result: true,
         time: 9,
+        type: 'slow'
       },
       {
         result: true,
         time: 9,
+        type: 'slow'
       },
       {
         result: true,
         time: 9,
+        type: 'slow'
       },
       {
         result: true,
         time: 9,
+        type: 'slow'
       },
     ];
-    expect(countScore(playerAnswers, 3, GAME_SETTINGS), 650);
-    expect(countScore(playerAnswers, 2, GAME_SETTINGS), 600);
-    expect(countScore(playerAnswers, 1, GAME_SETTINGS), 550);
+    expect(countScore(playerAnswers, 3, GAME_SETTINGS)).to.equal(650);
+    expect(countScore(playerAnswers, 2, GAME_SETTINGS)).to.equal(600);
+    expect(countScore(playerAnswers, 1, GAME_SETTINGS)).to.equal(550);
   });
   it(`should return more than 1150 points if the player answered 10 questions
     quickly`, () => {
@@ -107,42 +127,52 @@ describe(`Counting user's score`, () => {
       {
         result: true,
         time: 23,
+        type: 'fast'
       },
       {
         result: true,
         time: 23,
+        type: 'fast'
       },
       {
         result: true,
         time: 23,
+        type: 'fast'
       },
       {
         result: true,
         time: 23,
+        type: 'fast'
       },
       {
         result: true,
         time: 23,
+        type: 'fast'
       },
       {
         result: true,
         time: 23,
+        type: 'fast'
       },
       {
         result: true,
         time: 23,
+        type: 'fast'
       },
       {
         result: true,
         time: 23,
+        type: 'fast'
       },
       {
         result: true,
         time: 23,
+        type: 'fast'
       },
       {
         result: true,
         time: 23,
+        type: 'fast'
       },
     ];
     expect(countScore(playerAnswers, 3, GAME_SETTINGS)).to.equal(1650);

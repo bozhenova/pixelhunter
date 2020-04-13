@@ -3,6 +3,7 @@ import GameView from './gameView';
 import StatsBarView from '../stats/statsBarView';
 import Application from '../../../application';
 import { GAME_SETTINGS, GameData, State } from '../../data/data';
+import { GameModel } from '../../../gameModel';
 
 export default class GameScreen {
   public header: HeaderView;
@@ -11,7 +12,7 @@ export default class GameScreen {
   public state: State;
   public timer: any;
 
-  constructor(public model: any) {
+  constructor(public model: GameModel) {
     this.header = new HeaderView(this.model.state);
     this.content = new GameView(this.model.getCurrentLevel());
     this.root = document.createElement(`div`);
@@ -22,7 +23,7 @@ export default class GameScreen {
   }
 
   startGame() {
-    this.content.onAnswer = (e) => {
+    this.content.onAnswer = (e: MouseEvent) => {
       this.answer(this.model.getCurrentLevel(), e);
       this.changeLevel();
     };
@@ -59,7 +60,7 @@ export default class GameScreen {
     this.header = header;
   }
 
-  changeContentView(view: any) {
+  changeContentView(view: GameView) {
     this.root.replaceChild(view.element, this.content.element);
     this.content = view;
   }
@@ -72,7 +73,7 @@ export default class GameScreen {
     const content = new GameView(this.model.getCurrentLevel());
     this.changeContentView(content);
     this.content.element.append(new StatsBarView(this.model.state).element);
-    this.content.onAnswer = (e: any) => {
+    this.content.onAnswer = (e: MouseEvent) => {
       this.answer(this.model.getCurrentLevel(), e);
       this.continueGame();
     };
@@ -86,13 +87,13 @@ export default class GameScreen {
     Application.showStats(this.model);
   }
 
-  answer(level: GameData, e: any) {
+  answer(level: GameData, e: Event) {
 
-    let answerType: boolean = null;
+    let answerType: boolean;
 
     switch (level.type) {
       case `two-of-two`:
-        const [firstInput, secondInput]: any = this.content.element.querySelectorAll(`input:checked`);
+        const [firstInput, secondInput] = this.content.element.querySelectorAll(`input:checked`) as NodeListOf<HTMLInputElement>;
         const [firstAnswer, secondAnswer] = level.answers;
 
         answerType = firstInput.value === firstAnswer.type &&
@@ -100,11 +101,13 @@ export default class GameScreen {
         break;
       case `tinder-like`:
         let index: number = 0;
-        answerType = e.target.value === level.answers[index].type;
+        const inputElement = e.target as HTMLInputElement;
+        answerType = inputElement.value === level.answers[index].type;
         break;
       case `one-of-three`:
         const gameOptions = this.content.element.querySelector(`.game__content`);
-        const answerIndex = [...gameOptions.children].indexOf(e.target.closest(`.game__option`));
+        const element = e.target as HTMLElement;
+        const answerIndex = [...gameOptions.children].indexOf(element.closest(`.game__option`));
 
         answerType = level.answers[answerIndex].type === `painting`;
         break;

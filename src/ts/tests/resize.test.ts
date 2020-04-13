@@ -1,13 +1,13 @@
 import { expect } from "chai";
-import resize from "../utils/resize";
+import { resize, Sizes } from "../utils/resize";
 
-const createTestForFrame = (frame: object) => {
-  const testRatio = (given: object, expected: object) => {
+const createTestForFrame = (frame: Sizes) => {
+  const testRatio = (given: Sizes, expected: Sizes) => {
     const actual = resize(frame, given);
     expect(actual).to.deep.equal(expected);
   };
 
-  const createTest = (expected: object, multiplier: number) => {
+  const createTest = (expected: Sizes, multiplier: number) => {
     const given = {
       width: Math.floor(expected.width * multiplier),
       height: Math.floor(expected.height * multiplier),
@@ -17,7 +17,7 @@ const createTestForFrame = (frame: object) => {
     });
   };
 
-  const sequence = (expected: object) => {
+  const sequence = (expected: Sizes) => {
     createTest(expected, 8);
     createTest(expected, 7);
     createTest(expected, 5);

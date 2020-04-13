@@ -9,7 +9,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": false,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "module": "es6",
     "strictNullChecks": false
   },

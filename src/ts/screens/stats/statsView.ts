@@ -8,8 +8,7 @@ export default class StatsView extends AbstractView {
   }
 
   get template() {
-    debugger;
-    const speedBonusTemplate = (data: any[], setting: any) => `
+    const speedBonusTemplate = (data: Data["answers"], setting: any) => `
 	<tr>
 			<td></td>
 			<td class="result__extra">Бонус за скорость:</td>
@@ -34,7 +33,7 @@ export default class StatsView extends AbstractView {
 		</tr>
     `;
 
-    const slowFineTemplate = (data: any[], setting: any) => `
+    const slowFineTemplate = (data: Data["answers"], setting: any) => `
  		<tr>
 			<td></td>
 			<td class="result__extra">Штраф за медлительность:</td>
@@ -49,11 +48,11 @@ export default class StatsView extends AbstractView {
  `;
 
     const resultTemplate = (data: Data) => {
-      const speedBonusFilter = (value: any) =>
+      const speedBonusFilter = (value: Data["answers"][0]) =>
         value.time > GAME_SETTINGS.maxTime && value.result;
-      const slowFineFilter = (value: any) =>
+      const slowFineFilter = (value: Data["answers"][0]) =>
         value.time < GAME_SETTINGS.minTime && value.result;
-      const correctAnswerFilter = (value: any) => value.result;
+      const correctAnswerFilter = (value: Data["answers"][0]) => value.result;
 
       return `<td class="result__points">× 100</td>
 			<td class="result__total">${
@@ -78,7 +77,7 @@ export default class StatsView extends AbstractView {
       </tr>`;
     };
 
-    const statsBarTemplate = (data: any) =>
+    const statsBarTemplate = (data: Data["answers"][0]) =>
       `<li class="stats__result stats__result--${data.type}" ></li>`;
     const resultTableTemplate = (data: Data, index: number) => `
       <table class="result__table">

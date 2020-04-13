@@ -8,7 +8,7 @@ import LoaderScreen from './ts/screens/loader/loaderScreen';
 import ErrorScreen from './ts/screens/error/errorScreen';
 import { DEBUG, GameData } from './ts/data/data';
 import Loader from './loader';
-import { GameModel, Data } from './gameModel';
+import { GameModel } from './gameModel';
 
 const mainContent = document.querySelector(`#main`);
 
@@ -21,7 +21,6 @@ const renderScreen = (screenElement: HTMLElement) => {
 
 export default class Application {
   element: HTMLElement;
-  model: Data;
   static _gameData: GameData[];
 
   static start(): void {
@@ -67,12 +66,11 @@ export default class Application {
     gameScreen.startGame();
   }
 
-  static async showStats(model: any) {
-    debugger;
+  static async showStats(model: GameModel) {
     try {
       await Loader.saveResults(model, model.playerName);
       const loadedResults = await Loader.loadResults(model.playerName);
-      const statistics: StatsScreen = new StatsScreen(loadedResults);
+      const statistics = new StatsScreen(loadedResults);
       statistics.changeScreen();
       renderScreen(statistics.element);
     } catch (e) {
@@ -90,7 +88,7 @@ export default class Application {
     mainContent.querySelector('.modal').remove();
   }
 
-  static showError(e: any): void {
+  static showError(e: Error): void {
     const error: ErrorScreen = new ErrorScreen(e);
     renderScreen(error.element);
   }

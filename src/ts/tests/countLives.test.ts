@@ -6,7 +6,7 @@ import { GAME_SETTINGS } from "../data/data";
 describe(`Counting the player lives`, () => {
   it(`should return 0 if there is no lives left`, () => {
     const testGame = {
-      lives: -1,
+      level: 2, lives: 0, time: 0, answers: []
     };
     expect(countLives(testGame, GAME_SETTINGS)).to.equal(0);
   });

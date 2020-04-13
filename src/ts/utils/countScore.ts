@@ -1,6 +1,6 @@
-import { Settings } from '../data/data';
+import { Settings, State } from '../data/data';
 
-const countScore = (answers: any[], lives: number, settings: Settings) => {
+const countScore = (answers: State["answers"], lives: number, settings: Settings) => {
 
 
   if (answers.length < settings.maxLevel) {

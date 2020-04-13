@@ -5,10 +5,10 @@ import countScore from './ts/utils/countScore';
 import setTimer from './ts/utils/setTimer';
 import countLives from './ts/utils/countLives';
 
-export type Data = { level: number, lives: number, result: number, answers: any[] };
+export type Data = { level: number, lives: number, result: number, answers: { result: boolean, time: number, type: string }[] };
 
 export class GameModel {
-  protected _state: State;
+  private _state: State;
 
   constructor(protected _gameData: GameData[], public playerName: string) {
     this.restart();
@@ -52,7 +52,7 @@ export class GameModel {
   }
 
   updateScore(condition: boolean): void {
-    const answer: any = condition ? new Answer(true, this.state.time) : new Answer(false, this.state.time);
+    const answer: Answer = condition ? new Answer(true, this.state.time) : new Answer(false, this.state.time);
     answer.countSpeedType();
     this.state.answers.push(answer);
   }

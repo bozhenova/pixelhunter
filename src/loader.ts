@@ -1,11 +1,11 @@
 import Application from './application';
-import { GameModel } from './gameModel';
+import { GameModel, Data } from './gameModel';
 
 const SERVER_URL: string = 'https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter';
 const DEFAULT_NAME: string = 'john';
 const APP_ID: string = '910246';
 
-const checkStatus = (response: any) => {
+const checkStatus = (response: Response) => {
   if (response.ok) {
     return response;
   } else {
@@ -17,7 +17,7 @@ export default class Loader {
   static async loadData() {
     Application.showLoader();
     try {
-      const response = await fetch(`${SERVER_URL}/questions`);
+      const response: Response = await fetch(`${SERVER_URL}/questions`);
       const data = await checkStatus(response).json();
       Application._gameData = data;
       Application.showIntro();
@@ -27,9 +27,9 @@ export default class Loader {
   }
 
   static saveResults(model: GameModel, name: string = DEFAULT_NAME) {
-    const answers: any[] = model.state.answers;
-    const lives: number = model.state.lives;
-    const result: number = model.finalScore;
+    const answers: Data["answers"] = model.state.answers;
+    const lives: Data["lives"] = model.state.lives;
+    const result: Data["result"] = model.finalScore;
     const serverData = Object.assign({ name }, { answers }, { lives }, { result });
     const postSettings = {
       method: `POST`,
@@ -42,7 +42,7 @@ export default class Loader {
   }
 
   static async loadResults(name: string = DEFAULT_NAME) {
-    const response = await fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`);
+    const response: Response = await fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`);
     const data = await checkStatus(response);
     return data.json();
   }

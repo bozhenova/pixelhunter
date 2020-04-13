@@ -1,6 +1,7 @@
 import StatsView from "./statsView";
 import HeaderView from "../header/header";
 import Application from "../../../application";
+import { Data } from '../../../gameModel';
 
 export default class StatsScreen {
   element: HTMLDivElement
@@ -8,7 +9,7 @@ export default class StatsScreen {
   content: StatsView;
 
 
-  constructor(public data: any) {
+  constructor(public data: Data[]) {
     this.data = data.reverse();
     this.header = new HeaderView();
     this.content = new StatsView(data);

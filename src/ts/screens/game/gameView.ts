@@ -1,6 +1,6 @@
 import AbstractView from '../../../abstractView';
 import { GAME_ANSWERS_FRAMES, GAME_SETTINGS, DEBUG, GameData } from '../../data/data';
-import resize from '../../utils/resize';
+import { resize } from '../../utils/resize';
 
 export default class GameView extends AbstractView {
   constructor(public data: GameData) {
@@ -8,8 +8,8 @@ export default class GameView extends AbstractView {
   }
 
   get template() {
-    const questionOneTemplate = (data: any) => {
-      const questionTemplate = (data: any, index: number) => `<div class="game__option">
+    const questionOneTemplate = (data: GameData) => {
+      const questionTemplate = (data: GameData["answers"][0], index: number) => `<div class="game__option">
         <img src=${data.image.url} alt="Option ${index + GAME_SETTINGS.indexStep}"
         width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).width}
         height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).height}>
@@ -51,8 +51,8 @@ export default class GameView extends AbstractView {
 
     const questionThreeTemplate = (data: GameData) => {
       const uniqueElementLength: number = 1;
-      const questionTemplate = (data: any, index: number) => `<div class="game__option">
-      ${DEBUG.state && this.data.answers.filter((value: any) => value.type === data.type).length === uniqueElementLength ? DEBUG.secondStyleType : ``}>
+      const questionTemplate = (data: GameData["answers"][0], index: number) => `<div class="game__option">
+      ${DEBUG.state && this.data.answers.filter((value: GameData["answers"][0]) => value.type === data.type).length === uniqueElementLength ? DEBUG.secondStyleType : ``}>
         <img src=${data.image.url} alt="Option ${index + GAME_SETTINGS.indexStep}"
         width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).width}
         height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).height}>
@@ -83,7 +83,7 @@ export default class GameView extends AbstractView {
     </section>`;
   }
 
-  onAnswer(e: any): void { }
+  onAnswer(e: Event): void { }
 
   bind() {
     switch (this.data.type) {
@@ -105,7 +105,7 @@ export default class GameView extends AbstractView {
         const inputs: NodeListOf<HTMLInputElement> = this.element.querySelectorAll(`input`);
 
         for (const input of inputs) {
-          input.addEventListener(`click`, (e: MouseEvent) => {
+          input.addEventListener(`click`, (e) => {
             this.onAnswer(e);
           });
         }
@@ -115,7 +115,7 @@ export default class GameView extends AbstractView {
         const gameOptions: NodeListOf<HTMLInputElement> = this.element.querySelectorAll(`.game__option`);
 
         for (const option of gameOptions) {
-          option.addEventListener(`click`, (e: MouseEvent) => {
+          option.addEventListener(`click`, (e) => {
             this.onAnswer(e);
           });
         }
