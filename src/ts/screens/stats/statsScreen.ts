@@ -1,7 +1,7 @@
 import StatsView from "./statsView";
 import HeaderView from "../header/header";
-import Application from "../../../application";
-import { Data } from '../../../gameModel';
+import Application from "../../application";
+import { Data } from '../../gameModel';
 
 export default class StatsScreen {
   element: HTMLDivElement

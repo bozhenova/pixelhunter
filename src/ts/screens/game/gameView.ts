@@ -1,4 +1,4 @@
-import AbstractView from '../../../abstractView';
+import AbstractView from '../../abstractView';
 import { GAME_ANSWERS_FRAMES, GAME_SETTINGS, DEBUG, GameData } from '../../data/data';
 import { resize } from '../../utils/resize';
 

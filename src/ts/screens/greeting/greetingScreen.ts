@@ -1,5 +1,5 @@
 import GreetingView from './greetingView';
-import Application from '../../../application';
+import Application from '../../application';
 
 export default class GreetingScreen {
 	element: HTMLElement;

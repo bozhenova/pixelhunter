@@ -1,4 +1,4 @@
-import AbstractView from "../../../abstractView";
+import AbstractView from "../../abstractView";
 import { GAME_SETTINGS, State } from "../../data/data";
 
 export default class StatsBarView extends AbstractView {

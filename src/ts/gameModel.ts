@@ -1,9 +1,9 @@
-import Answer from './ts/data/answer';
-import { INITIAL_STATE, GAME_SETTINGS, State, GameData } from './ts/data/data';
-import changeLevel from './ts/utils/changeLevel';
-import countScore from './ts/utils/countScore';
-import setTimer from './ts/utils/setTimer';
-import countLives from './ts/utils/countLives';
+import Answer from './data/answer';
+import { INITIAL_STATE, GAME_SETTINGS, State, GameData } from './data/data';
+import changeLevel from './utils/changeLevel';
+import countScore from './utils/countScore';
+import setTimer from './utils/setTimer';
+import countLives from './utils/countLives';
 
 export type Data = { level: number, lives: number, result: number, answers: { result: boolean, time: number, type: string }[] };
 

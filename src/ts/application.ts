@@ -1,12 +1,12 @@
-import IntroScreen from './ts/screens/intro/introScreen';
-import GreetingScreen from './ts/screens/greeting/greetingScreen';
-import RulesScreen from './ts/screens/rules/rulesScreen';
-import GameScreen from './ts/screens/game/gameScreen';
-import ModalScreen from './ts/screens/modal/modalScreen';
-import StatsScreen from './ts/screens/stats/statsScreen';
-import LoaderScreen from './ts/screens/loader/loaderScreen';
-import ErrorScreen from './ts/screens/error/errorScreen';
-import { DEBUG, GameData } from './ts/data/data';
+import IntroScreen from './screens/intro/introScreen';
+import GreetingScreen from './screens/greeting/greetingScreen';
+import RulesScreen from './screens/rules/rulesScreen';
+import GameScreen from './screens/game/gameScreen';
+import ModalScreen from './screens/modal/modalScreen';
+import StatsScreen from './screens/stats/statsScreen';
+import LoaderScreen from './screens/loader/loaderScreen';
+import ErrorScreen from './screens/error/errorScreen';
+import { DEBUG, GameData } from './data/data';
 import Loader from './loader';
 import { GameModel } from './gameModel';
 

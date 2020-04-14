@@ -1,6 +1,6 @@
 import RulesView from "./rulesView";
 import HeaderView from "../header/header";
-import Application from "../../../application";
+import Application from "../../application";
 import { State } from "../../data/data";
 
 export default class RulesScreen {

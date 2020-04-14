@@ -1,9 +1,9 @@
 import HeaderView from '../header/header';
 import GameView from './gameView';
 import StatsBarView from '../stats/statsBarView';
-import Application from '../../../application';
+import Application from '../../application';
 import { GAME_SETTINGS, GameData, State } from '../../data/data';
-import { GameModel } from '../../../gameModel';
+import { GameModel } from '../../gameModel';
 
 export default class GameScreen {
   public header: HeaderView;

@@ -1,5 +1,5 @@
 import IntroView from "./introView";
-import Application from "../../../application";
+import Application from "../../application";
 
 export default class IntroScreen {
   content: IntroView;

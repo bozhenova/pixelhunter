@@ -1,6 +1,6 @@
-import AbstractView from "../../../abstractView";
+import AbstractView from "../../abstractView";
 import { GAME_SETTINGS } from "../../data/data";
-import { Data } from '../../../gameModel';
+import { Data } from '../../gameModel';
 
 export default class StatsView extends AbstractView {
   constructor(public data: Data[]) {

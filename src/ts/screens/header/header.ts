@@ -1,4 +1,4 @@
-import AbstractView from "../../../abstractView";
+import AbstractView from "../../abstractView";
 import { INITIAL_STATE, State } from "../../data/data";
 
 

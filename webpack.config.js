@@ -28,7 +28,7 @@ module.exports = {
   context: PATHS.src,
   mode: 'development',
   entry: {
-    main: ['@babel/polyfill', './main.ts']
+    main: ['@babel/polyfill', './ts/main.ts']
   },
   output: {
     filename: '[name].[hash].js',

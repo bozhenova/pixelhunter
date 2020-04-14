@@ -1,5 +1,5 @@
 import ModalView from "./modalView";
-import Application from "../../../application";
+import Application from "../../application";
 
 export default class ModalScreen {
   element: HTMLElement;
