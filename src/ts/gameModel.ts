@@ -5,12 +5,11 @@ import countScore from './utils/countScore';
 import setTimer from './utils/setTimer';
 import countLives from './utils/countLives';
 
-export type Data = { level: number, lives: number, result: number, answers: { result: boolean, time: number, type: string }[] };
 
 export class GameModel {
   private _state: State;
 
-  constructor(protected _gameData: GameData[], public playerName: string) {
+  constructor(public gameData: GameData[], public playerName: string) {
     this.restart();
   }
   get state(): State {
@@ -58,6 +57,6 @@ export class GameModel {
   }
 
   getCurrentLevel() {
-    return this._gameData[this.state.level];
+    return this.gameData[this.state.level];
   }
 }

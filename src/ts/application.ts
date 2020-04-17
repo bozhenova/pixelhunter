@@ -20,7 +20,6 @@ const renderScreen = (screenElement: HTMLElement) => {
 };
 
 export default class Application {
-  element: HTMLElement;
   static _gameData: GameData[];
 
   static start(): void {

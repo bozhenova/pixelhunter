@@ -55,10 +55,7 @@ module.exports = {
       cleanAfterEveryBuildPatterns: path.join(process.cwd(), 'dist/*.*')
     }),
     new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, 'src/favicon.ico'),
-        to: path.resolve(__dirname, 'dist')
-      },
+      { from: `${PATHS.src}/favicon.ico`, to: `${PATHS.dist}` },
       { from: `${PATHS.src}/img`, to: `${PATHS.dist}/img` },
       { from: `${PATHS.src}/img/sprite`, to: `${PATHS.dist}/img/sprite` },
       { from: `${PATHS.src}/fonts`, to: `${PATHS.dist}/fonts` }

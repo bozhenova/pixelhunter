@@ -1,5 +1,6 @@
 import Application from './application';
-import { GameModel, Data } from './gameModel';
+import { GameModel } from './gameModel';
+import { Data } from './data/data';
 
 const SERVER_URL: string = 'https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter';
 const DEFAULT_NAME: string = 'john';

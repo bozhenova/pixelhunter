@@ -6,11 +6,11 @@ import { GAME_SETTINGS, GameData, State } from '../../data/data';
 import { GameModel } from '../../gameModel';
 
 export default class GameScreen {
-  public header: HeaderView;
-  public content: GameView;
-  public root: HTMLElement;
-  public state: State;
-  public timer: any;
+  header: HeaderView;
+  content: GameView;
+  root: HTMLElement;
+  state: State;
+  timer: any;
 
   constructor(public model: GameModel) {
     this.header = new HeaderView(this.model.state);
