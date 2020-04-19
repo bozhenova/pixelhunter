@@ -1,6 +1,6 @@
-import { expect } from "chai";
 import changeLevel from "../utils/changeLevel";
 import { INITIAL_STATE, GAME_SETTINGS } from "../data/data";
+import { expect } from "chai";
 
 describe(`Changing the level`, () => {
   it(`should change the level when the player answered the question`, () => {

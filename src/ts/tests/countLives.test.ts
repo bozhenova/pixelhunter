@@ -4,11 +4,11 @@ import { INITIAL_STATE } from "../data/data";
 import { GAME_SETTINGS, State } from "../data/data";
 
 describe(`Counting the player lives`, () => {
-  it(`should return 0 if there is no lives left`, () => {
+  it(`should return -1 if there is no lives left`, () => {
     const testGame: State = {
-      level: 2, lives: 0, time: 0, answers: []
+      level: 2, lives: 0, time: 15, answers: []
     };
-    expect(countLives(testGame, GAME_SETTINGS)).to.equal(0);
+    expect(countLives(testGame, GAME_SETTINGS).lives).to.equal(-1);
   });
 
   it(`should return lives value less by 1 if the answer isn't correct`, () => {

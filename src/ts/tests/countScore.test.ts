@@ -63,8 +63,8 @@ describe(`Counting user's score`, () => {
     ];
     expect(countScore(playerAnswers, 3, GAME_SETTINGS)).to.equal(1150);
   });
-  it(`should return lower than 1150 points if the player answered 10 questions
-    slowly and have one or two lifes`, () => {
+  it(`should return fewer than 1150 points if the player answered 10 questions
+    slowly and have one or two lives`, () => {
     const playerAnswers = [
       {
         result: true,
