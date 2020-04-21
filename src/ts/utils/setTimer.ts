@@ -4,8 +4,8 @@ const setTimer = (state: State, settings: Settings) => {
   const second: number = 1;
 
   return {
-    ...state, time: (state.time > settings.endTime)
-      ? state.time - second : settings.endTime
+    ...state, time: (state.time > settings.endTime) ?
+      state.time - second : settings.endTime
   };
 };
 

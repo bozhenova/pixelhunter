@@ -256,7 +256,7 @@ const DEBUG: Debug = {
   firstStyleType: `style= "border: 5px solid rgba(0, 255, 0, 0.7)"`,
   secondStyleType: `style="border-color:rgba(0, 255, 0, 0.7)"`
 };
-
+type Sizes = { width: number, height: number };
 
 const GAME_ANSWERS_FRAMES: any = {
   'two-of-two': {
@@ -274,4 +274,4 @@ const GAME_ANSWERS_FRAMES: any = {
 };
 
 
-export { INITIAL_STATE, GAME_SETTINGS, GAME_ANSWERS_FRAMES, LEVELS, DEBUG, State, Settings, GameData, Data };
+export { INITIAL_STATE, GAME_SETTINGS, GAME_ANSWERS_FRAMES, LEVELS, DEBUG, State, Settings, GameData, Data, Sizes };

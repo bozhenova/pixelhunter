@@ -88,12 +88,12 @@ export default class StatsView extends AbstractView {
       ...new Array(GAME_SETTINGS.maxLevel - data.answers.length).fill(
         `<li class="stats__result stats__result--unknown"></li>`
       ),].join(``)} </ul></td>
-    ${data.result === GAME_SETTINGS.fail
+    ${data.result === GAME_SETTINGS.dead
         ? `<td class="result__total"></td><td colspan="5" class="result__total result__total--final">${GAME_SETTINGS.fail}</td>`
         : resultTemplate(data)}</table>`;
     return `<section class="result">
         <h2 class="result__title">${
-      this.data[0].result === GAME_SETTINGS.fail
+      this.data[0].result === GAME_SETTINGS.dead
         ? `Вы проиграли :(`
         : `Победа!`
       }</h2>

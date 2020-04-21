@@ -44,7 +44,7 @@ export default class GameScreen {
       this.model.updateScore(false);
       this.model.loseLife();
       this.stopGame();
-      this.continueGame();
+      this.endGame();
     }
   }
 

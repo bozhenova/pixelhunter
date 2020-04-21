@@ -3,7 +3,7 @@ import { INITIAL_STATE, GAME_SETTINGS, State, GameData } from './data/data';
 import changeLevel from './utils/changeLevel';
 import countScore from './utils/countScore';
 import setTimer from './utils/setTimer';
-import countLives from './utils/countLives';
+import loseLife from './utils/loseLife';
 
 
 export class GameModel {
@@ -34,7 +34,7 @@ export class GameModel {
   }
 
   loseLife(): void {
-    this._state = countLives(this.state, GAME_SETTINGS);
+    this._state = loseLife(this.state);
   }
 
   isDead(): boolean {

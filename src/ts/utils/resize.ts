@@ -1,5 +1,4 @@
-
-export type Sizes = { width: number, height: number };
+import { Sizes } from '../data/data';
 
 export const resize = (frame: Sizes, image: Sizes) => {
 

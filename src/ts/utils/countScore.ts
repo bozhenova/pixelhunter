@@ -2,17 +2,15 @@ import { Settings, State } from '../data/data';
 
 const countScore = (answers: State["answers"], lives: number, settings: Settings) => {
 
-
   if (answers.length < settings.maxLevel) {
-    return settings.fail;
+    return settings.dead;
   }
 
-  if (lives <= settings.dead) {
-    return settings.fail;
+  if (lives === settings.dead) {
+    return settings.dead;
   }
 
   const correctAnswers = answers.filter(answer => answer.result === true);
-
   let score = 0;
 
   for (const answer of correctAnswers) {

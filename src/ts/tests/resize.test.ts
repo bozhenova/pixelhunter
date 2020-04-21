@@ -1,5 +1,6 @@
 import { expect } from "chai";
-import { resize, Sizes } from "../utils/resize";
+import { resize } from "../utils/resize";
+import { Sizes } from '../data/data';
 
 const createTestForFrame = (frame: Sizes) => {
   const testRatio = (given: Sizes, expected: Sizes) => {
