@@ -34,15 +34,15 @@ export default class GameView extends AbstractView {
 
       return `<form class="game__content  game__content--wide">
         <div class="game__option">
-          <img src=${this.data.answers[index].image.url} alt="Option 1"
+          <img src=${data.answers[index].image.url} alt="Option 1"
           width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.answers[index].image).width}
           height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.answers[index].image).height}>
           <label class="game__answer  game__answer--photo">
-            <input class="visually-hidden" name="question1" type="radio" value="photo"> <span ${DEBUG.state && data.type === `photo` ? DEBUG.firstStyleType : ``}>
+            <input class="visually-hidden" name="question1" type="radio" value="photo"> <span ${DEBUG.state && data.answers[0].type === `photo` ? DEBUG.firstStyleType : ``}>
               Фото</span>
           </label>
           <label class="game__answer  game__answer--painting">
-            <input class="visually-hidden" name="question1" type="radio" value="painting"><span ${DEBUG.state && data.type === `painting` ? DEBUG.firstStyleType : ``}>
+            <input class="visually-hidden" name="question1" type="radio" value="painting"><span ${DEBUG.state && data.answers[0].type === `painting` ? DEBUG.firstStyleType : ``}>
               Рисунок</span>
           </label>
         </div>
@@ -51,9 +51,8 @@ export default class GameView extends AbstractView {
 
     const questionThreeTemplate = (data: GameData) => {
       const uniqueElementLength: number = 1;
-      const questionTemplate = (data: GameData["answers"][0], index: number) => `<div class="game__option">
-      ${DEBUG.state && this.data.answers.filter((value: GameData["answers"][0]) => value.type === data.type).length === uniqueElementLength ? DEBUG.secondStyleType : ``}>
-        <img src=${data.image.url} alt="Option ${index + GAME_SETTINGS.indexStep}"
+      const questionTemplate = (data: GameData["answers"][0], index: number) => `<div class="game__option" ${DEBUG.state && this.data.answers.filter((value: GameData["answers"][0]) => value.type === data.type).length === uniqueElementLength ? DEBUG.secondStyleType : ``}>
+        <img src=${data.image.url} alt="Option ${index + GAME_SETTINGS.indexStep}>"
         width=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).width}
         height=${resize(GAME_ANSWERS_FRAMES[this.data.type], data.image).height}>
       </div>`;

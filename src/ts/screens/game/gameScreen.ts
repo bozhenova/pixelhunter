@@ -106,12 +106,14 @@ export default class GameScreen {
         break;
       case `one-of-three`:
         const gameOptions = this.content.element.querySelector(`.game__content`);
+        const uniqueElementLength: number = 1;
         const element = e.target as HTMLElement;
         const answerIndex = [...gameOptions.children].indexOf(element.closest(`.game__option`));
 
-        answerType = level.answers[answerIndex].type === `painting`;
+        answerType = level.answers.filter((value: GameData["answers"][0]) => value.type === level.answers[answerIndex].type).length === uniqueElementLength;
         break;
     }
+
 
     if (!answerType) {
       this.model.loseLife();

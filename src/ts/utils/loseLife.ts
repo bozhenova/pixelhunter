@@ -1,4 +1,4 @@
-import { Settings, State } from '../data/data';
+import { State } from '../data/data';
 
 const loseLife = (game: State) => {
 

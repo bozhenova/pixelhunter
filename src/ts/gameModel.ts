@@ -21,7 +21,7 @@ export class GameModel {
   }
 
   isLastLevel(): boolean {
-    return changeLevel(this.state, this.state.level, GAME_SETTINGS.maxLevel).level === GAME_SETTINGS.maxLevel;
+    return changeLevel(this.state, this.state.level, GAME_SETTINGS.maxLevel).level === GAME_SETTINGS.maxLevel + 1;
   }
 
   getNextLevel(): void {
@@ -57,6 +57,6 @@ export class GameModel {
   }
 
   getCurrentLevel() {
-    return this.gameData[this.state.level];
+    return this.gameData[this.state.level - 1];
   }
 }

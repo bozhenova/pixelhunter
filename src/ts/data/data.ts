@@ -3,7 +3,7 @@ type State = { level: number, lives: number, time: number, answers: { result: bo
 type Data = { level: number, lives: number, result: number, answers: { result: boolean, time: number, type: string }[] };
 
 const INITIAL_STATE: State = Object.freeze({
-  level: 0,
+  level: 1,
   lives: 3,
   time: 30,
   answers: []
@@ -253,8 +253,8 @@ const GAME_SETTINGS: Settings = {
 type Debug = { state: boolean, firstStyleType: string, secondStyleType: string };
 const DEBUG: Debug = {
   state: false,
-  firstStyleType: `style= "border: 5px solid rgba(0, 255, 0, 0.7)"`,
-  secondStyleType: `style="border-color:rgba(0, 255, 0, 0.7)"`
+  firstStyleType: `style="border: 5px solid rgba(0, 255, 0, 0.7)"`,
+  secondStyleType: `style="border-color: rgba(0, 255, 0, 0.7)"`
 };
 type Sizes = { width: number, height: number };
 
