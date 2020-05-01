@@ -31,8 +31,8 @@ export default class GameScreen {
   }
 
   private tick() {
-    this.model.tick();
     this.updateHeader();
+    this.model.tick();
     this.timer = setTimeout(() => {
       this.tick();
       this.abortLevel();
@@ -43,12 +43,12 @@ export default class GameScreen {
     if (this.model.state.time === GAME_SETTINGS.endTime) {
       this.model.updateScore(false);
       this.model.loseLife();
-      this.stopGame();
+      this.stopTimer();
       this.endGame();
     }
   }
 
-  stopGame() {
+  stopTimer() {
     clearInterval(this.timer);
     this.model.resetTimer();
   }
@@ -119,7 +119,7 @@ export default class GameScreen {
       this.model.loseLife();
     }
     this.model.updateScore(answerType);
-    this.stopGame();
+    this.stopTimer();
   }
 
 }

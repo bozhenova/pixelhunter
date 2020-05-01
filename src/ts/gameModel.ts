@@ -12,6 +12,7 @@ export class GameModel {
   constructor(public gameData: GameData[], public playerName: string) {
     this.restart();
   }
+
   get state(): State {
     return this._state;
   }
@@ -21,11 +22,11 @@ export class GameModel {
   }
 
   isLastLevel(): boolean {
-    return changeLevel(this.state, this.state.level, GAME_SETTINGS.maxLevel).level === GAME_SETTINGS.maxLevel + 1;
+    return this.state.level === GAME_SETTINGS.maxLevel;
   }
 
   getNextLevel(): void {
-    this._state = changeLevel(this.state, this.state.level, GAME_SETTINGS.maxLevel);
+    this._state = changeLevel(this.state);
   }
 
   restart(): void {

@@ -1,6 +1,6 @@
 import Application from './application';
 import { GameModel } from './gameModel';
-import { Data } from './data/data';
+import { State } from './data/data';
 
 const SERVER_URL: string = 'https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter';
 const DEFAULT_NAME: string = 'john';
@@ -28,9 +28,9 @@ export default class Loader {
   }
 
   static saveResults(model: GameModel, name: string = DEFAULT_NAME) {
-    const answers: Data["answers"] = model.state.answers;
-    const lives: Data["lives"] = model.state.lives;
-    const result: Data["result"] = model.finalScore;
+    const answers: State["answers"] = model.state.answers;
+    const lives: State["lives"] = model.state.lives;
+    const result: State["result"] = model.finalScore;
     const serverData = Object.assign({ name }, { answers }, { lives }, { result });
     const postSettings = {
       method: `POST`,

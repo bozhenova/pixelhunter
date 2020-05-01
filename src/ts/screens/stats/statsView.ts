@@ -1,14 +1,14 @@
 import AbstractView from "../../abstractView";
 import { GAME_SETTINGS } from "../../data/data";
-import { Data } from '../../data/data';
+import { State } from '../../data/data';
 
 export default class StatsView extends AbstractView {
-  constructor(public data: Data[]) {
+  constructor(public data: State[]) {
     super();
   }
 
   get template() {
-    const speedBonusTemplate = (data: Data["answers"], setting: any) => `
+    const speedBonusTemplate = (data: State["answers"], setting: any) => `
 	<tr>
 			<td></td>
 			<td class="result__extra">Бонус за скорость:</td>
@@ -21,7 +21,7 @@ export default class StatsView extends AbstractView {
       }</td>
 		</tr>`;
 
-    const lifeBonusTemplate = (data: Data) => `
+    const lifeBonusTemplate = (data: State) => `
     	<tr>
 			<td></td>
 			<td class="result__extra">Бонус за жизни:</td>
@@ -33,7 +33,7 @@ export default class StatsView extends AbstractView {
 		</tr>
     `;
 
-    const slowFineTemplate = (data: Data["answers"], setting: any) => `
+    const slowFineTemplate = (data: State["answers"], setting: any) => `
  		<tr>
 			<td></td>
 			<td class="result__extra">Штраф за медлительность:</td>
@@ -47,12 +47,12 @@ export default class StatsView extends AbstractView {
 		</tr>
  `;
 
-    const resultTemplate = (data: Data) => {
-      const speedBonusFilter = (value: Data["answers"][0]) =>
+    const resultTemplate = (data: State) => {
+      const speedBonusFilter = (value: State["answers"][0]) =>
         value.time > GAME_SETTINGS.maxTime && value.result;
-      const slowFineFilter = (value: Data["answers"][0]) =>
+      const slowFineFilter = (value: State["answers"][0]) =>
         value.time < GAME_SETTINGS.minTime && value.result;
-      const correctAnswerFilter = (value: Data["answers"][0]) => value.result;
+      const correctAnswerFilter = (value: State["answers"][0]) => value.result;
 
       return `<td class="result__points">× 100</td>
 			<td class="result__total">${
@@ -77,26 +77,29 @@ export default class StatsView extends AbstractView {
       </tr>`;
     };
 
-    const statsBarTemplate = (data: Data["answers"][0]) =>
+    const statsBarTemplate = (data: State["answers"][0]) =>
       `<li class="stats__result stats__result--${data.type}" ></li>`;
-    const resultTableTemplate = (data: Data, index: number) => `
-      <table class="result__table">
+    const resultTableTemplate = (data: State, index: number) =>
+      `<table class="result__table">
         <tr>
-          <td class="result__number">${index + GAME_SETTINGS.indexStep}</td>
+        <td class="result__number">${index + GAME_SETTINGS.indexStep}</td>
           <td colspan="2">
-            <ul class="stats">${[...data.answers.map(statsBarTemplate),
+            <ul class="stats"> ${data.result === GAME_SETTINGS.dead ? [...data.answers.map(statsBarTemplate),
       ...new Array(GAME_SETTINGS.maxLevel - data.answers.length).fill(
         `<li class="stats__result stats__result--unknown"></li>`
-      ),].join(``)} </ul></td>
-    ${data.result === GAME_SETTINGS.dead
+      )].join(``) : [...data.answers.map(statsBarTemplate)].join(``)} 
+      </ul></td>
+        ${data.result === GAME_SETTINGS.dead
         ? `<td class="result__total"></td><td colspan="5" class="result__total result__total--final">${GAME_SETTINGS.fail}</td>`
         : resultTemplate(data)}</table>`;
+
     return `<section class="result">
         <h2 class="result__title">${
       this.data[0].result === GAME_SETTINGS.dead
         ? `Вы проиграли :(`
         : `Победа!`
-      }</h2>
+      }
+      </h2>
         ${this.data.map(resultTableTemplate).join(``)}
         </section>`;
   }

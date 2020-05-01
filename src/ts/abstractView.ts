@@ -1,5 +1,6 @@
 export default abstract class AbstractView {
   private _element: HTMLElement
+
   abstract get template(): string;
 
   get element(): HTMLElement {
