@@ -79,6 +79,7 @@ export default class StatsView extends AbstractView {
 
     const statsBarTemplate = (data: State["answers"][0]) =>
       `<li class="stats__result stats__result--${data.type}" ></li>`;
+
     const resultTableTemplate = (data: State, index: number) =>
       `<table class="result__table">
         <tr>

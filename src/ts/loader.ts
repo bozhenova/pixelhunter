@@ -2,8 +2,8 @@ import Application from './application';
 import { GameModel } from './gameModel';
 import { State } from './data/data';
 
-const SERVER_URL: string = 'https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter';
-const DEFAULT_NAME: string = 'john';
+const SERVER_URL: string = `https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter`;
+const DEFAULT_NAME: string = `john`;
 const APP_ID: string = '910246';
 
 const checkStatus = (response: Response) => {
@@ -27,7 +27,7 @@ export default class Loader {
     }
   }
 
-  static saveResults(model: GameModel, name: string = DEFAULT_NAME) {
+  static async saveResults(model: GameModel, name: string = DEFAULT_NAME) {
     const answers: State["answers"] = model.state.answers;
     const lives: State["lives"] = model.state.lives;
     const result: State["result"] = model.finalScore;
@@ -39,13 +39,13 @@ export default class Loader {
       },
       body: JSON.stringify(serverData)
     };
-    return fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`, postSettings);
+    return await fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`, postSettings);
   }
 
   static async loadResults(name: string = DEFAULT_NAME) {
     const response: Response = await fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`);
     const data = await checkStatus(response);
-    return data.json();
+    return await data.json();
   }
 }
 

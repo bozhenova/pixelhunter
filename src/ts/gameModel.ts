@@ -30,8 +30,7 @@ export class GameModel {
   }
 
   restart(): void {
-    const answers: object[] = [];
-    this._state = Object.assign({}, INITIAL_STATE, { answers });
+    this._state = { ...INITIAL_STATE };
   }
 
   loseLife(): void {
@@ -47,8 +46,7 @@ export class GameModel {
   }
 
   resetTimer(): void {
-    const time: number = INITIAL_STATE.time;
-    this._state = Object.assign({}, this.state, { time });
+    this._state = { ...this.state, time: INITIAL_STATE.time };
   }
 
   updateScore(condition: boolean): void {

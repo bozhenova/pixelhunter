@@ -16,7 +16,7 @@ const renderScreen = (screenElement: HTMLElement) => {
   if (!screenElement.matches('.modal')) {
     mainContent.innerHTML = ``;
   }
-  mainContent.append(screenElement);
+  mainContent.appendChild(screenElement);
 };
 
 export default class Application {
