@@ -1,10 +1,10 @@
 import { expect } from "chai";
-import { resize } from "../utils/resize";
+import { resizeImage } from "../utils/resize";
 import { Sizes } from '../data/data';
 
 const createTestForFrame = (frame: Sizes) => {
   const testRatio = (given: Sizes, expected: Sizes) => {
-    const actual = resize(frame, given);
+    const actual = resizeImage(frame, given);
     expect(actual).to.deep.equal(expected);
   };
 

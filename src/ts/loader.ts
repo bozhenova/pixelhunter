@@ -1,3 +1,4 @@
+import { preloadImages } from './utils/resize';
 import Application from './application';
 import { GameModel } from './gameModel';
 import { State } from './data/data';
@@ -20,6 +21,7 @@ export default class Loader {
     try {
       const response: Response = await fetch(`${SERVER_URL}/questions`);
       const data = await checkStatus(response).json();
+      preloadImages(data)
       Application._gameData = data;
       Application.showIntro();
     } catch (e) {
