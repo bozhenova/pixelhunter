@@ -7,7 +7,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const PATHS = {
   src: path.resolve(__dirname, './src'),
-  dist: path.resolve(__dirname, './dist'),
+  dist: path.resolve(__dirname, './dist')
 };
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -19,10 +19,10 @@ const optimization = () => {
     config.minimizer = [
       new OptimizeCssAssetsPlugin(),
       new TerserWebpackPlugin()
-    ]
+    ];
   }
   return config;
-}
+};
 
 module.exports = {
   context: PATHS.src,
@@ -32,7 +32,7 @@ module.exports = {
   },
   output: {
     filename: '[name].[hash].js',
-    path: PATHS.dist,
+    path: PATHS.dist
   },
   resolve: {
     extensions: ['.js', '.json', '.ts', '.scss', '.css']
@@ -57,8 +57,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: `${PATHS.src}/favicon.ico`, to: `${PATHS.dist}` },
       { from: `${PATHS.src}/img`, to: `${PATHS.dist}/img` },
-      { from: `${PATHS.src}/img/sprite`, to: `${PATHS.dist}/img/sprite` },
-      { from: `${PATHS.src}/fonts`, to: `${PATHS.dist}/fonts` }
+      { from: `${PATHS.src}/img/sprite`, to: `${PATHS.dist}/img/sprite` }
     ]),
     new MiniCssExtractPlugin({
       filename: './style.[hash].css'
@@ -72,9 +71,7 @@ module.exports = {
         loader: {
           loader: 'babel-loder',
           options: {
-            presets: [
-              '@babel/preset-env'
-            ]
+            presets: ['@babel/preset-env']
           }
         }
       },
@@ -105,18 +102,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.(woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: `${PATHS.dist}/fonts`,
-            }
-          }
-        ]
-      },
-      {
         test: /\.(png|jpg|svg|gif)$/,
         use: [
           {
@@ -125,10 +110,9 @@ module.exports = {
               name: '[name].[ext]',
               outputPath: `${PATHS.dist}/img`
             }
-          },
+          }
         ]
       }
     ]
   }
-}
-
+};
