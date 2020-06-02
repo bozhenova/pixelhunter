@@ -22,7 +22,7 @@ export default class Loader {
       const response: Response = await fetch(`${SERVER_URL}/questions`);
       const data = await checkStatus(response).json();
       preloadImages(data)
-      Application._gameData = data;
+      Application.gameData = data;
       Application.showIntro();
     } catch (e) {
       Application.showError(e);
